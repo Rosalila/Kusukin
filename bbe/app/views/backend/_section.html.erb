@@ -11,45 +11,38 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :number %><br>
-    <%= f.number_field :number %>
+  <div class="form-group">
+    <label>Title</label>
+    <input name="section[title]" type="text" class="form-control" placeholder="Enter ..." value="<%= @section.title %>"/>
   </div>
 
-            <div class="form-group">
-              <label>Title</label>
-              <input name="section[title]" type="text" class="form-control" placeholder="Enter ..."/>
-            </div>
-
-            <div class="form-group">
-              <label>Video url</label>
-              <input name="section[videourl]" type="text" class="form-control" placeholder="Enter ..."/>
-            </div>
-
-            <div class="form-group">
-              <label>Content</label>
-              <textarea name="section[content]" class="form-control" rows="3" placeholder="Enter ..."></textarea>
-            </div>
-
-            <div class="form-group">
-              <label>Homework Description</label>
-              <textarea name="section[homework_description]" class="form-control" rows="3" placeholder="Enter ..."></textarea>
-            </div>
-
-            <div class="form-group">
-              <label>Homework price</label>
-              <div class="input-group">
-                <span class="input-group-addon">Ð</span>
-                <input name="section[price]" type="text" class="form-control">
-                <span class="input-group-addon">.00</span>
-              </div>
-            </div>
-
-  <div class="field">
-    <%= f.label :course_id %><br>
-    <%= f.text_field :course_id %>
+  <div class="form-group">
+    <label>Video url</label>
+    <input name="section[videourl]" type="text" class="form-control" placeholder="Enter ..." value="<%= @section.videourl %>"/>
   </div>
-            <div class="box-footer">
-              <button type="submit" class="btn btn-primary">Save</button>
-            </div>
+
+  <div class="form-group">
+    <label>Content</label>
+    <textarea name="section[content]" class="form-control" rows="3" placeholder="Enter ..."><%= @section.content %></textarea>
+  </div>
+
+  <div class="form-group">
+    <label>Homework Description</label>
+    <textarea name="section[homework_description]" class="form-control" rows="3" placeholder="Enter ..."><%= @section.homework_description %></textarea>
+  </div>
+
+  <div class="form-group">
+    <label>Homework price</label>
+    <div class="input-group">
+      <span class="input-group-addon">Ð</span>
+      <input name="section[price]" type="text" class="form-control" value="<%= @section.price %>">
+      <span class="input-group-addon">.00</span>
+    </div>
+  </div>
+
+  <input type="hidden" name="section[course_id]" class="form-control" rows="3" placeholder="Enter ..." value="<%= params[:course_id] %>"/>
+
+  <div class="box-footer">
+    <button type="submit" class="btn btn-primary">Save</button>
+  </div>
 <% end %>

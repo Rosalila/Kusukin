@@ -26,15 +26,16 @@ class SectionsController < ApplicationController
   def create
     @section = Section.new(section_params)
 
-    respond_to do |format|
+    #respond_to do |format|
       if @section.save
-        format.html { redirect_to @section, notice: 'Section was successfully created.' }
-        format.json { render :show, status: :created, location: @section }
+        #format.html { redirect_to @section, notice: 'Section was successfully created.' }
+        #format.json { render :show, status: :created, location: @section }
+        redirect_to :controller => 'backend', :action => 'courses' , :course_id => @section.course.id
       else
         format.html { render :new }
         format.json { render json: @section.errors, status: :unprocessable_entity }
       end
-    end
+    #end
   end
 
   # PATCH/PUT /sections/1
@@ -69,6 +70,6 @@ class SectionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def section_params
-      params.require(:section).permit(:number, :videourl, :content, :course_id)
+      params.require(:section).permit(:number, :videourl, :content, :course_id, :title, :homework_description, :price)
     end
 end
