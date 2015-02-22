@@ -22,6 +22,11 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
 
+  get '/backend/courses', to: 'backend#courses', as: 'backend_courses'
+  get '/backend/balance', to: 'backend#balance', as: 'backend_balance'
+  get '/backend/checked_assignments', to: 'backend#checked_assignments', as: 'backend_checked_assignments'
+  get '/backend/pending_assignments', to: 'backend#pending_assignments', as: 'backend_pending_assignments'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
