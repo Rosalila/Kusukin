@@ -3,7 +3,7 @@ module ApplicationHelper
   def myBalance
     client = DogecoinClient.new
 		if client.valid?
-      return client.get_balance("themoreyoube_user_"+current_user.id.to_s , 1)
+      return client.get_balance("themoreyoube_user_"+current_user.id.to_s , 0)
     end
     return -1
   end
