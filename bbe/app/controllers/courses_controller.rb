@@ -11,11 +11,11 @@ class CoursesController < ApplicationController
   def join
     @enrollment = Enrollment.new
     @enrollment.course = Course.find(params[:course_id])
-    @enrollment.user = User.find(params[:user_id])
+    @enrollment.user = current_user
     if @enrollment.save
-      redirect_to :action => 'courses' controller: => 'backend'
+      #redirect_to :action => 'courses' controller: => 'backend'
     else
-      render 'join'
+      #render 'join'
     end
   end
 
@@ -43,7 +43,7 @@ class CoursesController < ApplicationController
       if @course.save
         #format.html { redirect_to @course, notice: 'Course was successfully createdd.' }
         #format.json { render "/backend/courses", status: :created, location: @course }
-        redirect_to "/backend/courses"
+        redirect_to :controller => 'backend', :action => 'courses'
       else
         format.html { render :new }
         format.json { render json: @course.errors, status: :unprocessable_entity }
