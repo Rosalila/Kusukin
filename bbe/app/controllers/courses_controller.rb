@@ -26,16 +26,18 @@ class CoursesController < ApplicationController
   # POST /courses.json
   def create
     @course = Course.new(course_params)
+    @course.user_id = current_user.id
 
-    respond_to do |format|
+    #respond_to do |format|
       if @course.save
-        format.html { redirect_to @course, notice: 'Course was successfully created.' }
-        format.json { render :show, status: :created, location: @course }
+        #format.html { redirect_to @course, notice: 'Course was successfully createdd.' }
+        #format.json { render "/backend/courses", status: :created, location: @course }
+        redirect_to "/backend/courses"
       else
         format.html { render :new }
         format.json { render json: @course.errors, status: :unprocessable_entity }
       end
-    end
+    #end
   end
 
   # PATCH/PUT /courses/1
@@ -56,10 +58,10 @@ class CoursesController < ApplicationController
   # DELETE /courses/1.json
   def destroy
     @course.destroy
-    respond_to do |format|
-      format.html { redirect_to courses_url, notice: 'Course was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    #respond_to do |format|
+    #  format.html { redirect_to courses_url, notice: 'Course was successfully destroyed.' }
+      redirect_to "/backend/courses"
+    #end
   end
 
   private

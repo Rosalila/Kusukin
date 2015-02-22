@@ -11,80 +11,47 @@
   <section class="content">
     <!-- Small boxes (Stat box) -->
     <div class="row">
+      <% current_user.courses.each do |c| %>
       <div class="col-lg-3 col-xs-6">
         <!-- small box -->
         <div class="small-box bg-aqua">
-    <div class="inner">
-      <h3>
-       50
-      </h3>
-      <p>
-       Rails Junior
-      </p>
-    </div>
-    <div class="icon">
-       <i class="ion ion-stats-bars"></i>
-    </div>
-    <a  class="small-box-footer">
-      Edit <i class="fa fa-arrow-circle-right"></i>
-    </a>
+          <div class="inner">
+            <h3>
+              50
+            </h3>
+            <p>
+              <%= c.name %>
+            </p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-stats-bars"></i>
+          </div>
+          <a class="small-box-footer" data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/courses/<%= c.id %>">
+            Delete
+          </a>
+          <a class="small-box-footer" rel="nofollow" href="/backend/courses?course_id=<%= c.id %>">
+            Edit
+          </a>
         </div>
       </div><!-- ./col -->
+      <% end %>
       <div class="col-lg-3 col-xs-6">
         <!-- small box -->
-        <div class="small-box bg-green">
-    <div class="inner">
-      <h3>
-        60
-      </h3>
-      <p>
-        HTML5
-      </p>
-    </div>
-    <div class="icon">
-      <i class="ion ion-stats-bars"></i>
-    </div>
-    <a  class="small-box-footer">
-      Edit <i class="fa fa-arrow-circle-right"></i>
-    </a>
-        </div>
-      </div><!-- ./col -->
-      <div class="col-lg-3 col-xs-6">
-        <!-- small box -->
-        <div class="small-box bg-yellow">
-    <div class="inner">
-      <h3>
-        60
-      </h3>
-      <p>
-        CSS3
-      </p>
-    </div>
-    <div class="icon">
-        <i class="ion ion-stats-bars"></i>
-    </div>
-    <a  class="small-box-footer">
-     Edit <i class="fa fa-arrow-circle-right"></i>
-    </a>
-        </div>
-      </div><!-- ./col -->
-      <div class="col-lg-3 col-xs-6">
-        <!-- small box -->
-        <div class="small-box bg-red">
-    <div class="inner">
-      <h3>
-        65
-      </h3>
-      <p>
-        Unique Visitors
-      </p>
-    </div>
-    <div class="icon">
-      <i class="ion ion-pie-graph"></i>
-    </div>
-    <a href="#" class="small-box-footer">
-      Edit <i class="fa fa-arrow-circle-right"></i>
-    </a>
+        <div class="small-box bg-blue">
+          <div class="inner">
+            <h3>
+              0
+            </h3>
+            <p>
+              ...
+            </p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-stats-bars"></i>
+          </div>
+          <a class="small-box-footer" rel="nofollow" href="/backend/courses?course_id">
+            New
+          </a>
         </div>
       </div><!-- ./col -->
     </div><!-- /.row -->  
@@ -93,27 +60,9 @@
       En esta parte se tiene se van a cargar todas las secciones por curso
      -->      
 
-    <div class="form-group">
-      <label>Tile</label>
-      <input type="text" class="form-control" placeholder="Enter ..."/>
-    </div>
-    <div class="form-group">
-      <label>Description</label>
-      <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
-    </div>
-
-    <div class="form-group">
-      <label>Category</label>
-      <select class="form-control">
-        <% Category.all.each do |c| %>
-          <option value="<%= c.id %>"><%= c.name %></option>
-        <% end %>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <button type="submit" class="btn btn-primary">Save</button>
-    </div>
+    <% @course = Course.find_by_id(params[:course_id]) %>
+    <% @course = Course.new if @course == nil %>
+    <%= render 'course' %>
 
     <h4 id="Sections" class="page-header">
       Sections
@@ -133,19 +82,13 @@
             </div>
           </div>
           <div class="box-body">
+
+<%= @section = Section.new %>
+<%= render 'section' %>
+
             <div class="form-group">
               <label>Tile</label>
               <input type="text" class="form-control" placeholder="Enter ..."/>
-            </div>
-
-            <div class="form-group">
-              <label>Video url</label>
-              <input type="text" class="form-control" placeholder="Enter ..."/>
-            </div>
-
-            <div class="form-group">
-              <label>Content</label>
-              <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
             </div>
 
             <div class="form-group">
