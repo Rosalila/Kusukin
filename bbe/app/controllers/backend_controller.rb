@@ -1,5 +1,7 @@
 class BackendController < ApplicationController
 
+  layout 'backend/dashboard'
+  
   def courses
   end
 
