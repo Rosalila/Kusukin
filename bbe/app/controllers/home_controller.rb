@@ -7,4 +7,8 @@ class HomeController < ApplicationController
     @courses = Course.all
   end
   
+  def go
+    redirect_to controller: 'courses'
+  end
+  
 end
