@@ -27,6 +27,8 @@
     <link href="/backend/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
     <!-- bootstrap wysihtml5 - text editor -->
     <link href="/backend/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
+    <%= head = javascript_include_tag "application" %>
+    <%= head = csrf_meta_tag %>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -289,7 +291,7 @@
               <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
             </div>
             <div class="pull-left info">
-              <p>Alexander Pierce</p>
+              <p><%= current_user.email %></p>
 
               <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
@@ -308,12 +310,12 @@
           <ul class="sidebar-menu">
             <li class="header">Principal Menu</li>                  
             <li>
-              <a href="pages/widgets.html">
+              <a href="/backend/courses">
                 <i class="fa fa-th"></i> <span>Courses</span> <small class="label pull-right bg-green">new</small>
               </a>
             </li>
              <li>
-              <a href="pages/balance/balance.html">
+              <a href="/backend/balance">
                 <i class="fa fa-th"></i> <span>Balance</span> <small class="label pull-right bg-green">new</small>
               </a>
             </li>
@@ -322,8 +324,8 @@
                 <i class="fa fa-dashboard"></i> <span>Assignments</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li class="active"><a href="pages/assignments/checked.html"><i class="fa fa-circle-o"></i>Checked</a></li>              
-                <li class="active"><a href="pages/assignments/pending.html"><i class="fa fa-circle-o"></i>Pending</a></li>              
+                <li class="active"><a href="/backend/checked_assignments"><i class="fa fa-circle-o"></i>Checked</a></li>              
+                <li class="active"><a href="/backend/pending_assignments"><i class="fa fa-circle-o"></i>Pending</a></li>              
               </ul>
             </li>  
 
