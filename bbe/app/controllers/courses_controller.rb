@@ -43,7 +43,7 @@ class CoursesController < ApplicationController
       if @course.save
         #format.html { redirect_to @course, notice: 'Course was successfully createdd.' }
         #format.json { render "/backend/courses", status: :created, location: @course }
-        redirect_to :controller => 'backend', :action => 'courses'
+        redirect_to :controller => 'backend', :action => 'courses', :course_id => @course.id
       else
         format.html { render :new }
         format.json { render json: @course.errors, status: :unprocessable_entity }
@@ -54,15 +54,16 @@ class CoursesController < ApplicationController
   # PATCH/PUT /courses/1
   # PATCH/PUT /courses/1.json
   def update
-    respond_to do |format|
+    #respond_to do |format|
       if @course.update(course_params)
-        format.html { redirect_to @course, notice: 'Course was successfully updated.' }
-        format.json { render :show, status: :ok, location: @course }
+        #format.html { redirect_to @course, notice: 'Course was successfully updated.' }
+        #format.json { render :show, status: :ok, location: @course }
+        redirect_to :controller => 'backend', :action => 'courses', :course_id => @course.id
       else
         format.html { render :edit }
         format.json { render json: @course.errors, status: :unprocessable_entity }
       end
-    end
+    #end
   end
 
   # DELETE /courses/1
@@ -83,6 +84,6 @@ class CoursesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      params.require(:course).permit(:name, :description, :category_id)
+      params.require(:course).permit(:name, :description, :category_id, :image)
     end
 end

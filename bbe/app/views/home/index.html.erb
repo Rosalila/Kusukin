@@ -81,3 +81,59 @@
 		</div>
   <% count += 1 %>
 <% end %>
+
+
+    <link href="/backend/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />    
+    <!-- FontAwesome 4.3.0 -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <!-- Ionicons 2.0.0 -->
+    <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />    
+    <!-- Theme style -->
+    <link href="/backend/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+    <!-- AdminLTE Skins. Choose a skin from the css/skins 
+         folder instead of downloading all of them to reduce the load. -->
+    <link href="/backend/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+    <!-- iCheck -->
+    <link href="/backend/plugins/iCheck/flat/blue.css" rel="stylesheet" type="text/css" />
+    <!-- Morris chart -->
+    <link href="/backend/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
+    <!-- jvectormap -->
+    <link href="/backend/plugins/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+    <!-- Date Picker -->
+    <link href="/backend/plugins/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
+    <!-- Daterange picker -->
+    <link href="/backend/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+    <!-- bootstrap wysihtml5 - text editor -->
+    <link href="/backend/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
+
+<div class="content-wrapper">
+  <section id="login">
+    <div class="section-title text-center wow fadeInDown">
+      <h2>Login</h2>    
+    </div>
+    <section class="content">
+      <div class="row">
+        <div class="col-lg-3 col-xs-6">
+          <%= form_for(:user, :url => session_path(:user)) do |f| %>
+            <div class="form-group">
+              <label>Email</label>
+              <input name="user[email]" type="text" class="form-control" placeholder="Enter ..."/>
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input name="user[password]" type="password" class="form-control" placeholder="Enter ..."/>
+            </div>
+
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+            <%= link_to "Forgot your password?", new_password_path(:user) %>
+
+            <div class="box-footer">
+              <button type="submit" class="btn btn-primary">Sign in</button>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </section>
+  </section>
+</div>

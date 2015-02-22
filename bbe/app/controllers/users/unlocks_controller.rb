@@ -1,6 +1,6 @@
 class Users::UnlocksController < Devise::UnlocksController
   
-  layout 'frontend/homepage'
+  layout 'backend/dashboard'
   # GET /resource/unlock/new
   # def new
   #   super
