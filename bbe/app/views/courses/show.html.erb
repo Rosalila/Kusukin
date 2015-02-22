@@ -1,19 +1,71 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @course.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @course.description %>
-</p>
-
-<p>
-  <strong>Category:</strong>
-  <%= @course.category %>
-</p>
-
-<%= link_to 'Edit', edit_course_path(@course) %> |
-<%= link_to 'Back', courses_path %>
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      <%= @course.name %>
+      <small><%= time_ago_in_words(@course.created_at) %></small>
+    </h1>
+    <p><%= @course.description %></p>
+  </section>
+  
+<section class="content">
+          <!-- row -->
+          <div class="row">
+            <div class="col-md-12">
+              <!-- The time line -->
+              <ul class="timeline">
+                <!-- timeline time label -->
+                <% @course.sections.each do |section| %>
+                <li class="time-label">
+                  <span class="bg-red">
+                    <%= "#{section.number}: #{section.title}" %>
+                  </span>
+                </li>             
+                  <% if !section.videourl.nil? %>
+                    <li>
+                    <i class="fa fa-video-camera bg-maroon"></i>
+                    <div class="timeline-item">
+                      <span class="time"><i class="fa fa-clock-o"></i> <%= time_ago_in_words(section.created_at) %></span>
+                      <h3 class="timeline-header"><a href="#"><%= @course.user_id unless @course.user_id.nil? %></a> shared a video</h3>
+                      <div class="timeline-body">
+                        <div class="embed-responsive embed-responsive-16by9">
+                          <iframe class="embed-responsive-item" src="<%= section.videourl %>" frameborder="0" allowfullscreen></iframe>                        
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <% end %> 
+                
+                  <% unless section.content.nil? %>
+                   <li>
+                        <i class="fa fa-comments bg-yellow"></i>
+                        <div class="timeline-item">
+                          <span class="time"><i class="fa fa-clock-o"></i> <%= time_ago_in_words(section.created_at) %> </span>
+                          <h3 class="timeline-header"><a href="#">Content</a></h3>
+                          <div class="timeline-body">
+                            <%= section.content %>
+                          </div>
+                        </div>
+                    </li>
+                  <% end %> 
+                
+                <% unless section.homework_description.nil? %>
+                  <li>
+                    <i class="fa fa-user bg-aqua"></i>
+                    <div class="timeline-item">
+                      <span class="time"><i class="fa fa-clock-o"></i> <%= time_ago_in_words(section.created_at) %></span>
+                       <h3 class="timeline-header"><a href="#">Homework Description</a></h3>
+                          <div class="timeline-body">
+                            <%= section.homework_description %>
+                          </div>
+                    </div>
+                  </li>
+                  <% end %> 
+                <% end %>
+              </ul>
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+  
+</section>
+</div>
