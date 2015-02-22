@@ -1,6 +1,6 @@
 class Users::ConfirmationsController < Devise::ConfirmationsController
  
-    layout 'frontend/homepage'
+  layout '/backend/dashboard'
   # GET /resource/confirmation/new
   # def new
   #   super

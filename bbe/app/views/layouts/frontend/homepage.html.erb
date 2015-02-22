@@ -42,6 +42,9 @@
 		
 		<!-- Modernizer Script for old Browsers -->
         <script src="/frontend/js/vendor/modernizr-2.6.2.min.js"></script>
+
+    <%= head = javascript_include_tag "application" %>
+    <%= head = csrf_meta_tag %>
 		
     </head>
 	
@@ -79,7 +82,14 @@
                             <li class="current"><a href="#home">Home</a></li>
                             <li><a href="#portfolio">Courses</a></li>
                             <li><a href="#about">About</a></li>
-                            <li><a href="#login">Log in</a></li>                          
+                            <% if current_user == nil %>
+                              <li><a href="#login">Log in</a></li>
+                              <li><a href="/users/sign_up">Sign up</a></li>
+                            <% else %>
+                              <li>
+                                <%= link_to 'Sign out', destroy_user_session_path, :method => :delete %>
+                              </li>
+                            <% end %>
                         </ul>
                     </nav>
                     <!-- /main nav -->

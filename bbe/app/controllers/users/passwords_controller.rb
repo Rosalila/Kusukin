@@ -1,6 +1,6 @@
 class Users::PasswordsController < Devise::PasswordsController
   
-  layout 'frontend/homepage'
+  layout '/backend/dashboard'
   
   # GET /resource/password/new
   # def new
