@@ -1,11 +1,22 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
 
-  layout 'frontend/homepage'
+  layout 'backend/dasboard'
   # GET /courses
   # GET /courses.json
   def index
     @courses = Course.all
+  end
+  
+  def join
+    @enrollment = Enrollment.new
+    @enrollment.course = Course.find(params[:course_id])
+    @enrollment.user = current_user
+    if @enrollment.save
+      #redirect_to :action => 'courses' controller: => 'backend'
+    else
+      #render 'join'
+    end
   end
 
   # GET /courses/1
@@ -32,7 +43,7 @@ class CoursesController < ApplicationController
       if @course.save
         #format.html { redirect_to @course, notice: 'Course was successfully createdd.' }
         #format.json { render "/backend/courses", status: :created, location: @course }
-        redirect_to "/backend/courses"
+        redirect_to :controller => 'backend', :action => 'courses'
       else
         format.html { render :new }
         format.json { render json: @course.errors, status: :unprocessable_entity }

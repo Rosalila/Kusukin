@@ -6,4 +6,5 @@ class HomeController < ApplicationController
     @categories = Category.all
     @courses = Course.all
   end
+  
 end
