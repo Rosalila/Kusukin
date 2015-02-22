@@ -1,4 +1,18 @@
 Rails.application.routes.draw do
+  resources :homework_payments
+
+  resources :homeworks
+
+  resources :paths
+
+  resources :achievements
+
+  resources :sections
+
+  resources :courses
+
+  resources :categories
+
   devise_for :users
   get 'home/index'
 

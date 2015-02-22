@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @homework_payment.user %>
+</p>
+
+<p>
+  <strong>Homework:</strong>
+  <%= @homework_payment.homework %>
+</p>
+
+<%= link_to 'Edit', edit_homework_payment_path(@homework_payment) %> |
+<%= link_to 'Back', homework_payments_path %>

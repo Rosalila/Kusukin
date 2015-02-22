@@ -1,0 +1,2 @@
+module HomeworkPaymentsHelper
+end

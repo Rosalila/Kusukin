@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Homework Payments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Homework</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @homework_payments.each do |homework_payment| %>
+      <tr>
+        <td><%= homework_payment.user %></td>
+        <td><%= homework_payment.homework %></td>
+        <td><%= link_to 'Show', homework_payment %></td>
+        <td><%= link_to 'Edit', edit_homework_payment_path(homework_payment) %></td>
+        <td><%= link_to 'Destroy', homework_payment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Homework payment', new_homework_payment_path %>
