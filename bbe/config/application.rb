@@ -19,6 +19,14 @@ module Bbe
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+    
+    config.to_prepare do
+      Devise::SessionsController.layout "frontend/homepage"
+      Devise::RegistrationsController.layout "frontend/homepage"
+      Devise::ConfirmationsController.layout "frontend/homepage"
+      Devise::UnlocksController.layout "frontend/homepage"
+      Devise::PasswordsController.layout "frontend/homepage"
+    end
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true

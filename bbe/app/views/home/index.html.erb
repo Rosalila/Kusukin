@@ -1,2 +1,97 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+ <section id="portfolio">
+         
+            <div class="section-title text-center wow fadeInDown">
+                <h2>Courses</h2>    
+                <!--<p>Aprienda de una forma diferente!</p-->
+            </div>
+            
+            <nav class="project-filter clearfix text-center wow fadeInLeft"  data-wow-delay="0.5s">
+                <ul class="list-inline">
+                  <% @categories.each do |category| %>
+                    <li><a href="javascript:;" class="filter" data-filter="<%= category.name.downcase %>"><%= category.name %></a></li>
+                    <!--<li><a href="javascript:;" class="filter" data-filter=".app">App</a></li>
+                    <li><a href="javascript:;" class="filter" data-filter=".photography">Photography</a></li>
+                    <li><a href="javascript:;" class="filter" data-filter=".web">Web</a></li>
+                    <li><a href="javascript:;" class="filter" data-filter=".print">Print</a></li>-->
+                  <% end %>
+                </ul>
+            </nav>
+
+            <div id="projects" class="clearfix">
+
+                <figure class="mix portfolio-item programming">
+                    <img class="img-responsive" src="/frontend/img/portfolio/portfolio-1.jpg" alt="Portfolio Item">
+                    <a href="/frontend/img/portfolio/portfolio-1.jpg" title="Title One" rel="portfolio" class="fancybox"><span class="plus"></span></a>
+                    <figcaption class="mask">
+                        <h3>Flat Design</h3>
+                        <span>Design</span>
+                    </figcaption>
+                </figure>
+
+                <figure class="mix portfolio-item design">
+                    <img class="img-responsive" src="/frontend/img/portfolio/portfolio-2.jpg" alt="Portfolio Item">
+                    <a href="/frontend/img/portfolio/portfolio-2.jpg" title="Title Two" rel="portfolio" class="fancybox"><span class="plus"></span></a>
+                    <figcaption class="mask">
+                        <h3>Awesome Image</h3>
+                        <span>Photography</span>
+                    </figcaption>
+                </figure>
+
+                <figure class="mix portfolio-item programmaing">
+                    <img class="img-responsive" src="/frontend/img/portfolio/portfolio-3.jpg" alt="Portfolio Item">
+                    <a href="#" data-toggle="modal" data-target=".bs-example-modal-lg" title="Title Three" rel="portfolio"><span class="plus"></span></a>
+                    <figcaption class="mask">
+                        <h3>Develop Games in Unity</h3>
+                        <span>Programming</span>
+                    </figcaption>
+                </figure>
+
+                <figure class="mix portfolio-item music">
+                    <img class="img-responsive" src="/frontend/img/portfolio/portfolio-4.jpg" alt="Portfolio Item">
+                    <a href="/frontend/img/portfolio/portfolio-4.jpg"  title="Title Four" rel="portfolio" class="fancybox"><span class="plus"></span></a>
+                    <figcaption class="mask">
+                        <h3>Awesome Image</h3>
+                        <span>Photography</span>
+                    </figcaption>
+                </figure>
+
+                <figure class="mix portfolio-item bussiness">
+                    <img class="img-responsive" src="/frontend/img/portfolio/portfolio-4.jpg" alt="Portfolio Item">
+                    <a href="/frontend/img/portfolio/portfolio-4.jpg" title="Title Five" rel="portfolio" class="fancybox"><span class="plus"></span></a>
+                    <figcaption class="mask">
+                        <h3>Awesome Image</h3>
+                        <span>Photography</span>
+                    </figcaption>
+                </figure>
+
+                <figure class="mix portfolio-item design">
+                    <img class="img-responsive" src="/frontend/img/portfolio/portfolio-1.jpg" alt="Portfolio Item">
+                    <a href="/frontend/img/portfolio/portfolio-1.jpg" title="Title Six" rel="portfolio" class="fancybox"><span class="plus"></span></a>
+                    <figcaption class="mask">
+                        <h3>Awesome Image</h3>
+                        <span>Photography</span>
+                    </figcaption>
+                </figure>
+
+                <figure class="mix portfolio-item web FBX">
+                    <img class="img-responsive" src="/frontend/img/portfolio/portfolio-2.jpg" alt="Portfolio Item">
+                    <a href="/frontend/img/portfolio/portfolio-2.jpg" title="Title Seven" rel="portfolio" class="fancybox"><span class="plus"></span></a>
+                    <figcaption class="mask">
+                        <h3>Awesome Image</h3>
+                        <span>Photography</span>
+                    </figcaption>
+                </figure>
+
+                <figure class="mix portfolio-item print Gameplay">
+                    <img class="img-responsive" src="/frontend/img/portfolio/portfolio-3.jpg" alt="Portfolio Item">
+                    <a href="/frontend/img/portfolio/portfolio-3.jpg" title="Title Eight" rel="portfolio" class="fancybox"><span class="plus"></span></a>
+                    <figcaption class="mask">
+                        <h3>Awesome Image</h3>
+                        <span>Photography</span>
+                    </figcaption>
+                </figure>
+
+            </div> <!-- end #projects -->
+
+        </section>
+      
