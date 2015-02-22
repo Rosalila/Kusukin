@@ -1,11 +1,20 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
 
-  layout 'backend/dasboard'
+  layout 'backend/dashboard'
   # GET /courses
   # GET /courses.json
   def index
-    @courses = Course.all
+    enrollments = Enrollment.find_by_user_id(current_user.id)
+    
+    courses_ids = []
+    enrollments.each do |enrollment|
+      courses << enrollment.course.id
+    end   
+    courses_ids.uniq!
+    
+    @courses = Course.find_by_id(courses_ids)   
+    
   end
   
   def join
@@ -18,10 +27,15 @@ class CoursesController < ApplicationController
       #render 'join'
     end
   end
+  
+  def progress
+    @courses = Course.find_by_user_id(current_user.id)
+  end
 
   # GET /courses/1
   # GET /courses/1.json
   def show
+    
   end
 
   # GET /courses/new

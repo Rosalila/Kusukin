@@ -20,9 +20,10 @@
             <div id="projects" class="clearfix">
               <% count = 1 %>
               <% @courses.each do |course| %>
+                <% image = "/frontend/img/portfolio/portfolio-1.jpg" %>
                 <% category_name = course.category.name unless course.category.nil? %>
                 <figure class="mix portfolio-item <%= category_name.downcase unless category_name.nil? %>">
-                   <img class="img-responsive" src="/frontend/img/portfolio/portfolio-1.jpg" alt="Portfolio Item">
+                   <img class="img-responsive" src="<%= course.image.nil? == true ? image : course.image %>" alt="Portfolio Item">
                    <a href="#" data-toggle="modal" data-target=".bs-modal-<%= count %>" title="Title Three" rel="portfolio"><span class="plus"></span></a>
                     <figcaption class="mask">
                       <h3><%= course.name %></h3>
