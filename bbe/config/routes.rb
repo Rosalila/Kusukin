@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'enrollment/join'
+
   resources :homework_payments
 
   resources :homeworks

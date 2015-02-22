@@ -1,11 +1,22 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
 
-  layout 'frontend/homepage'
+  layout 'backend/dasboard'
   # GET /courses
   # GET /courses.json
   def index
     @courses = Course.all
+  end
+  
+  def join
+    @enrollment = Enrollment.new
+    @enrollment.course = Course.find(params[:course_id])
+    @enrollment.user = User.find(params[:user_id])
+    if @enrollment.save
+      redirect_to :action => 'courses' controller: => 'backend'
+    else
+      render 'join'
+    end
   end
 
   # GET /courses/1
