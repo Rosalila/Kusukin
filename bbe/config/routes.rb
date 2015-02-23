@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   get 'enrollment/join'
 
+  resources :home
+  
   resources :homework_payments
 
   resources :homeworks
@@ -16,9 +18,7 @@ Rails.application.routes.draw do
   resources :categories
 
   devise_for :users
-  get 'home/index'
 
-  get '/home/go', to: 'courses#index', as: 'backend_progress'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

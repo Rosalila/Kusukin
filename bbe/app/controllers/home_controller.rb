@@ -7,8 +7,18 @@ class HomeController < ApplicationController
     @courses = Course.all
   end
   
-  def go
-    redirect_to controller: 'courses'
+  def show
+    e = Enrollment.new
+    e.user_id = current_user.id
+    e.course_id = 1
+    e.progress = 10
+    
+    if e.save
+      #redirect_to 'www.google.hn'
+      redirect_to controller: 'courses'
+    else
+      render('index')
+    end
   end
   
 end
