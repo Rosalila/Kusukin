@@ -79,11 +79,16 @@
                     <!-- main nav -->
                     <nav class="collapse navigation navbar-collapse navbar-right" role="navigation">
                         <ul id="nav" class="nav navbar-nav">
-                            <li class="current"><a href="#home">Home</a></li>
-                            <li><a href="#portfolio">Courses</a></li>
-                            <li><a href="#about">About</a></li>
+                            <li class="current"><a href="/#home">Home</a></li>
+                            <% if current_user != nil %>
+                              <li><a href="/backend/courses">Dashboard</a></li>
+                            <% end %>
+                            <li><a href="/#portfolio">Courses</a></li>
                             <% if current_user == nil %>
-                              <li><a href="#login">Log in</a></li>
+                              <li><a href="/#login">Log in</a></li>
+                            <% end %>
+                            <li><a href="/#about">About</a></li>
+                            <% if current_user == nil %>
                               <li><a href="/users/sign_up">Sign up</a></li>
                             <% else %>
                               <li>

@@ -3,10 +3,11 @@ class Users::SessionsController < Devise::SessionsController
   
   layout '/backend/dashboard'
 
-  # GET /resource/sign_in
-  # def new
-  #   super
-  # end
+  GET /resource/sign_in
+  def new
+    super
+    redirect_to "www.google.com"
+  end
 
   # POST /resource/sign_in
   # def create
