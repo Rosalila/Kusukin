@@ -5,16 +5,17 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
-    enrollments = Enrollment.find_by_user_id(current_user.id)
+    enrollments = Enrollment.all.where(user_id: current_user.id)
+   
+    @courses = []
+    if enrollments.count > 0
+      courses_ids = []
+      enrollments.each do |enrollment|  
+        courses_ids.push enrollment.course.id unless enrollment.course.nil?
+      end
+    end
     
-    courses_ids = []
-    enrollments.each do |enrollment|
-      courses << enrollment.course.id
-    end   
-    courses_ids.uniq!
-    
-    @courses = Course.find_by_id(courses_ids)   
-    
+    @courses = Course.all.where(id: courses_ids)
   end
   
   def join
@@ -57,7 +58,7 @@ class CoursesController < ApplicationController
       if @course.save
         #format.html { redirect_to @course, notice: 'Course was successfully createdd.' }
         #format.json { render "/backend/courses", status: :created, location: @course }
-        redirect_to :controller => 'backend', :action => 'courses', :course_id => @course.id
+        redirect_to :controller => 'backend', :action => 'courses'
       else
         format.html { render :new }
         format.json { render json: @course.errors, status: :unprocessable_entity }
@@ -68,16 +69,15 @@ class CoursesController < ApplicationController
   # PATCH/PUT /courses/1
   # PATCH/PUT /courses/1.json
   def update
-    #respond_to do |format|
+    respond_to do |format|
       if @course.update(course_params)
-        #format.html { redirect_to @course, notice: 'Course was successfully updated.' }
-        #format.json { render :show, status: :ok, location: @course }
-        redirect_to :controller => 'backend', :action => 'courses', :course_id => @course.id
+        format.html { redirect_to @course, notice: 'Course was successfully updated.' }
+        format.json { render :show, status: :ok, location: @course }
       else
         format.html { render :edit }
         format.json { render json: @course.errors, status: :unprocessable_entity }
       end
-    #end
+    end
   end
 
   # DELETE /courses/1
@@ -98,6 +98,6 @@ class CoursesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      params.require(:course).permit(:name, :description, :category_id, :image)
+      params.require(:course).permit(:name, :description, :category_id)
     end
 end

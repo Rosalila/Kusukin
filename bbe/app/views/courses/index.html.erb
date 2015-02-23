@@ -34,7 +34,8 @@
                   </div>
             </td>
             <td>
-               <button type="submit" class="btn btn-primary">Continue</button>
+               <%= link_to "Continue", action: "show", id: course.id %>
+              <!-- <button type="submit" class="btn btn-primary">Continue</button>-->
             </td>
           </tr>
           <% end %>
