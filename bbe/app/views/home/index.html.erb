@@ -83,36 +83,117 @@
   <% count += 1 %>
 <% end %>
 
-
-   
-<div class="content-wrapper">
-  <section id="login">
-    <div class="section-title text-center wow fadeInDown">
-      <h2>Login</h2>    
+ <!--
+  #about
+  ========================== -->
+  <section id="about">
+    <div class="container">
+         <div class="row">
+              <div class="section-title text-center wow fadeInUp">
+                  <h2>About Us</h2>    
+                  <p>Rosalila Studio.</p>
+               </div>                 
+               <div class="about-us text-center wow fadeInDown">
+                   <img src="/frontend/img/about.png" alt="About Us" class="img-responsive">
+                </div>
+           </div>
     </div>
-    <section class="content">
-      <div class="row">
-        <div class="col-lg-3 col-xs-6">
-          <%= form_for(:user, :url => session_path(:user)) do |f| %>
-            <div class="form-group">
-              <label>Email</label>
-              <input name="user[email]" type="text" class="form-control" placeholder="Enter ..."/>
-            </div>
-            <div class="form-group">
-              <label>Password</label>
-              <input name="user[password]" type="password" class="form-control" placeholder="Enter ..."/>
-            </div>
-
-            <%= f.check_box :remember_me %>
-            <%= f.label :remember_me %>
-            <%= link_to "Forgot your password?", new_password_path(:user) %>
-
-            <div class="box-footer">
-              <button type="submit" class="btn btn-primary">Sign in</button>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    </section>
   </section>
-</div>
+ <!--
+ End #about
+ ========================== -->
+
+
+ <!--
+  #login
+  ========================== -->
+  <!-- Login Form -->
+ <section id="login">
+  <div class="row">
+     <div class="col-xs-6 col-md-4"></div>
+     <div class="col-xs-6 col-md-4">
+       <div id="loginbox">
+        <div class="section-title text-center wow fadeInDown">
+          <h2>Login</h2>    
+        </div>
+          <%= form_for(:user, :url => session_path(:user)) do |f| %>
+              <div class="form-group">
+                <label>Email</label>
+                <input name="user[email]" type="text" class="form-control" placeholder="Enter ..."/>
+              </div>
+              <div class="form-group">
+                <label>Password</label>
+                <input name="user[password]" type="password" class="form-control" placeholder="Enter ..."/>
+              </div>
+             <div class="form-group">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+              <%= link_to "Forgot your password?", new_password_path(:user) %>
+             </div>
+             <div class="form-group">
+                <div class="box-footer">
+                   <button type="submit" class="btn btn-success">Login</button>
+                   <a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a>
+                </div>
+             </div>
+             <div class="form-group">
+                 <div class="control">
+                      <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
+                           Don't have an account! 
+                           <a href="#login" onClick="$('#loginbox').hide(); $('#signupbox').show()">
+                           Sign Up Here </a>
+                       </div>
+                 </div>
+             </div>  
+          <% end %>
+      </div>
+       <div id="signupbox" style="display:none;">
+          <div class="section-title text-center wow fadeInDown">
+             <h2>Sign up</h2>    
+          </div>
+           <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= devise_error_messages! %>
+
+             <div class="form-group">
+                <%= f.label :email %><br />
+                <%= f.email_field :email, autofocus: true, class: "form-control" %>
+             </div>
+
+            <div class="form-group">
+              <%= f.label :password %>
+              <% if @validatable %>
+                <em>(<%= @minimum_password_length %> characters minimum)</em>
+              <% end %><br />
+              <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+            </div>
+
+           <div class="form-group">
+              <%= f.label :password_confirmation %><br />
+              <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+            </div>
+
+           <div class="form-group">
+             <%= f.submit "Sign up", class: "btn btn-info" %>
+             <span style="margin-left:8px;margin-right:8px">or</span>  
+             <%= f.submit "Sign Up with Facebook", class: "btn btn-primary" %>
+           </div>
+         
+           <div class="form-group">
+                 <div class="control">
+                      <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
+                           Already have an account! 
+                           <a href="#login" onClick="$('#signupbox').hide(); $('#loginbox').show()">
+                           Login Here </a>
+                       </div>
+                 </div>
+           </div>   
+        <% end %>
+       </div>
+    </div>
+     <div class="col-xs-6 col-md-4"></div>  
+  </div>
+</section>
+
+ <!--
+ End #login
+ ========================== -->

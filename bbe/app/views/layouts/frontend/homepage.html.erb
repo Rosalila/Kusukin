@@ -84,12 +84,12 @@
                               <li><a href="/backend/courses">Dashboard</a></li>
                             <% end %>
                             <li><a href="/#portfolio">Courses</a></li>
+ 
+                            <li><a href="/#about">About</a></li>
+
+                            <!--Login & sign up nav -->
                             <% if current_user == nil %>
                               <li><a href="/#login">Log in</a></li>
-                            <% end %>
-                            <li><a href="/#about">About</a></li>
-                            <% if current_user == nil %>
-                              <li><a href="/users/sign_up">Sign up</a></li>
                             <% else %>
                               <li>
                                 <%= link_to 'Sign out', destroy_user_session_path, :method => :delete %>
@@ -169,51 +169,15 @@
         ========================== -->
 
         <!--
-        #Portfolio
+        #Content
         ========================== -->
         
         <%= yield %>
-  
-        <!--
-        End #Portfolio
-        ========================== -->
 
         <!--
-        #about
+        End #Content
         ========================== -->
-        <section id="about">
-            <div class="container">
-                <div class="row">
 
-                    <div class="section-title text-center wow fadeInUp">
-                        <h2>About Us</h2>    
-                        <p>Rosalila Studio.</p>
-                    </div>
-                    
-                    <div class="about-us text-center wow fadeInDown">
-                        <img src="/frontend/img/about.png" alt="About Us" class="img-responsive">
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!--
-        End #about
-        ========================== -->
-        <!--
-        #about-us
-        ========================== -->
-        <section id="about-us">
-            <div class="container">
-                <div class="row">
-                    
-
-                </div>
-            </div>
-        </section>
-        <!--
-        End #about-us
-        ========================== -->
-      
         <!--
         #footer
         ========================== -->
@@ -221,11 +185,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-
                         <div class="footer-logo wow fadeInDown">
                             <img src="/frontend/img/logo.png" alt="logo">
                         </div>
-
                         <div class="footer-social wow fadeInUp">
                             <h3>We are social</h3>
                             <ul class="text-center list-inline">
