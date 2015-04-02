@@ -42,7 +42,7 @@
       
       <header class="main-header">
         <!-- Logo -->
-        <a href="index2.html" class="logo"><b>Niño Dinero Admin</b></a>
+        <a href="index2.html" class="logo"><b>The More You Be</b></a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
           <!-- Sidebar toggle button-->
@@ -310,7 +310,7 @@
           <ul class="sidebar-menu">
             <li class="header">Main Navigation</li>  
              <li>
-              <a href="#">
+              <a href="">
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
               </a>
             </li>
@@ -321,23 +321,21 @@
             </li>
              <li>
               <a href="/backend/balance">
-                <i class="fa fa-th"></i> <span>Balance</span> <small class="label pull-right bg-green">new</small>
+                <i class="fa fa-pie-chart"></i> <span>Balance</span>
               </a>
             </li>
             <li class="treeview">
-              <% link_to 'In Progress', in_progress_courses_path, class: 'fa fa-edit' %>
-              <a href="/courses">
-                <i class="fa fa-edit"></i> <span>In Progress</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
+              <%= link_to in_progress_courses_path do %>
+                  <i class="fa fa-share"></i> <span>In Progress</span>
+              <% end %>
             </li>
-            <li class="active treeview">
+            <li class="treeview">
               <a href="#">
                 <i class="fa fa-dashboard"></i> <span>Assignments</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li class="active"><a href="/backend/checked_assignments"><i class="fa fa-circle-o"></i>Checked</a></li>              
-                <li class="active"><a href="/backend/pending_assignments"><i class="fa fa-circle-o"></i>Pending</a></li>              
+                <li class=""><a href="/backend/checked_assignments"><i class="fa fa-circle-o"></i>Checked</a></li>              
+                <li class=""><a href="/backend/pending_assignments"><i class="fa fa-circle-o"></i>Pending</a></li>              
               </ul>
             </li>  
 
