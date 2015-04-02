@@ -27,7 +27,7 @@
                     <i class="fa fa-video-camera bg-maroon"></i>
                     <div class="timeline-item">
                       <span class="time"><i class="fa fa-clock-o"></i> <%= time_ago_in_words(section.created_at) %></span>
-                      <h3 class="timeline-header"><a href="#"><%= @course.user_id unless @course.user_id.nil? %></a> shared a video</h3>
+                      <h3 class="timeline-header"><a href="#"><%= @course.user.username unless @course.user_id.nil? %></a> shared a video</h3>
                       <div class="timeline-body">
                         <div class="embed-responsive embed-responsive-16by9">
                           <iframe class="embed-responsive-item" src="<%= section.videourl %>" frameborder="0" allowfullscreen></iframe>                        
