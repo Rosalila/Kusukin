@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   private
   # If your model is called User
   def after_sign_in_path_for(resource)
-    session["user_return_to"] || courses_url
+    session["user_return_to"] || in_progress_courses_url
   end
  
 end

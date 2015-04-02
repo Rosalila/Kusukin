@@ -1,9 +1,4 @@
 Rails.application.routes.draw do
-  
-  
-  #devise_for :users, :controllers => { :registrations => "registrations" }
-  
-  get 'enrollment/join'
 
   resources :home
   
@@ -17,9 +12,15 @@ Rails.application.routes.draw do
 
   resources :sections
 
-  resources :courses
+  resources :courses do
+    collection do
+      get 'in_progress'
+    end
+  end
 
   resources :categories
+  
+  resources :enrollment
 
   devise_for :users
 

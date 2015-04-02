@@ -272,7 +272,7 @@
                       <a href="#" class="btn btn-default btn-flat">Profile</a>
                     </div>
                     <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                      <%= link_to 'Sign out', destroy_user_session_path, :method => :delete, class: "btn btn-default btn-flat" %>
                     </div>
                   </li>
                 </ul>
@@ -308,10 +308,15 @@
           <!-- /.search form -->
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
-            <li class="header">Principal Menu</li>                  
+            <li class="header">Main Navigation</li>  
+             <li>
+              <a href="#">
+                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+              </a>
+            </li>
             <li>
               <a href="/backend/courses">
-                <i class="fa fa-th"></i> <span>Courses</span> <small class="label pull-right bg-green">new</small>
+                <i class="fa fa-th"></i> <span>Create a Course</span> <small class="label pull-right bg-green">new</small>
               </a>
             </li>
              <li>
@@ -320,6 +325,7 @@
               </a>
             </li>
             <li class="treeview">
+              <% link_to 'In Progress', in_progress_courses_path, class: 'fa fa-edit' %>
               <a href="/courses">
                 <i class="fa fa-edit"></i> <span>In Progress</span>
                 <i class="fa fa-angle-left pull-right"></i>

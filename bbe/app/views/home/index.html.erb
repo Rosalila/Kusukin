@@ -37,7 +37,8 @@
     
 <% count = 1 %>
 <% @courses.each do |course| %>
-		<div class="modal fade bs-modal-<%= count %>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+
+		<div id="modal-<%= count %>" class="modal fade bs-modal-<%= count %>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 		  <div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<section id="services">
@@ -69,9 +70,15 @@
 											<div class="text-left">
                         <p><%= course.description %></p>
 											</div>										
-											<div class="text-center">                   
-												<a href="/home/show" class="btn btn-blue">Enrollment</a>                      
-                        									</div>
+											<div class="text-center">  
+                        <% if current_user.nil? %>
+                          <%= link_to "Enrollment", "/#login", class: "btn btn-blue",  
+                                      onClick:"$('#modal-#{count}').hide();" %>  
+                        <% else %>
+                        <%= link_to "Enrollment", { controller: 'enrollment', action: 'new', id: course }, 
+                                    class: "btn btn-blue" %>  
+                        <% end %>
+                      </div>
 								</div>
 							</div>
 						</div>																			

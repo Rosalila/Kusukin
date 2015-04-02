@@ -5,6 +5,10 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
+    @courses = Course.all
+  end
+  
+  def in_progress
     enrollments = Enrollment.all.where(user_id: current_user.id)
    
     @courses = []
@@ -16,21 +20,6 @@ class CoursesController < ApplicationController
     end
     
     @courses = Course.all.where(id: courses_ids)
-  end
-  
-  def join
-    @enrollment = Enrollment.new
-    @enrollment.course = Course.find(params[:course_id])
-    @enrollment.user = current_user
-    if @enrollment.save
-      #redirect_to :action => 'courses' controller: => 'backend'
-    else
-      #render 'join'
-    end
-  end
-  
-  def progress
-    @courses = Course.find_by_user_id(current_user.id)
   end
 
   # GET /courses/1
