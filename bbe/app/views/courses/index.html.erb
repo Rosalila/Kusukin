@@ -20,7 +20,7 @@
         <thead>
           <tr>
             <th>Course</th>
-            <th>%</th>
+            <th>Enrollments</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -29,12 +29,11 @@
           <tr>
             <td><%= course.name %></td>
             <td>
-                <div class="progress progress progress-striped active">
-                  <div class="progress-bar progress-bar-primary" style="width:                             50%"></div>
-                  </div>
+              <%= Enrollment.all.where(:course_id => course).size unless course.nil? %>
             </td>
             <td>
-               <%= link_to "Continue", action: "show", id: course.id %>
+              <%= link_to "Join", { controller: "enrollment", action: 'new', id: course.id  },
+                                   class: "btn btn-primary" %>
               <!-- <button type="submit" class="btn btn-primary">Continue</button>-->
             </td>
           </tr>

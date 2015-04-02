@@ -1,25 +1,31 @@
 <p id="notice"><%= notice %></p>
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
+  <!--
   <section class="content-header">
     <h1>
-      Courses in Progress
+      Courses
     </h1>
   </section>
+  -->
   
    <!-- Main content -->
-  <section class="content">
-    <div class="row">
-      <div class="col-xs-12">
-
-        <div class="box">
-    <div class="box-header">
-    </div><!-- /.box-header -->
-      <div class="box-body">
-      <table id="example1" class="table table-bordered table-striped">
+  <section class="content">  
+     <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Courses in Progress</h3>
+            <div class="box-tools pull-right">
+               <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+               <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+            </div>
+         </div><!-- /.box-header -->     
+     <div class="box-body">
+       <div class="table-responsive">
+       <table class="table no-margin">
         <thead>
           <tr>
             <th>Course</th>
+            <th>Progress</th>
             <th>%</th>
             <th>Actions</th>
           </tr>
@@ -29,21 +35,27 @@
           <tr>
             <td><%= course.name %></td>
             <td>
-                <div class="progress progress progress-striped active">
-                  <div class="progress-bar progress-bar-primary" style="width:                             50%"></div>
-                  </div>
+              <div class="progress progress progress-striped active">
+                 <div class="progress-bar progress-bar-primary" style="width:50%"></div>
+              </div>
             </td>
             <td>
-               <%= link_to "Continue", action: "show", id: course.id %>
-              <!-- <button type="submit" class="btn btn-primary">Continue</button>-->
+              50
+            </td>
+            <td>
+              <%= link_to "Continue", action: "show", id: course.id %> |
+              <%= link_to "Leave", controller: "enrollment", action: "destroy", id: -1 %>
             </td>
           </tr>
           <% end %>
         </tbody>
-      </table>
-    </div><!-- /.box-body -->
-        </div><!-- /.box -->
-      </div><!-- /.col -->
-    </div><!-- /.row -->
-  </section><!-- /.content -->
+       </table>
+     </div><!-- /.box-body -->
+     <div class="box-footer clearfix">
+         <!--<a href="javascript::;" class="btn btn-sm btn-info btn-flat pull-left">Place New Order</a>-->
+         <%= link_to 'View All Courses', courses_url, class: "btn btn-sm btn-info btn-flat pull-right" %>
+     </div><!-- /.box-footer -->
+     </div><!-- /.box -->
+    </div><!-- /.col -->
+  </section> <!-- /.content -->
 </div>
