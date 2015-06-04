@@ -9,17 +9,8 @@ class CoursesController < ApplicationController
   end
   
   def in_progress
-    enrollments = Enrollment.all.where(user_id: current_user.id)
-   
-    @courses = []
-    if enrollments.count > 0
-      courses_ids = []
-      enrollments.each do |enrollment|  
-        courses_ids.push enrollment.course.id unless enrollment.course.nil?
-      end
-    end
-    
-    @courses = Course.all.where(id: courses_ids)
+    #@courses = current_user.courses
+    @enrollments = current_user.enrollments
   end
 
   # GET /courses/1

@@ -31,20 +31,20 @@
           </tr>
         </thead>
         <tbody>
-          <% @courses.each do |course| %>
+          <% @enrollments.each do |enrollment| %>          
           <tr>
-            <td><%= course.name %></td>
+            <td><%= enrollment.course.name %></td>
             <td>
               <div class="progress progress progress-striped active">
-                 <div class="progress-bar progress-bar-primary" style="width:50%"></div>
+                 <div class="progress-bar progress-bar-primary" style="width: <%= enrollment.progress %>%"></div>
               </div>
             </td>
             <td>
-              50
+              <%= enrollment.progress %>
             </td>
             <td>
-              <%= link_to "Continue", action: "show", id: course.id %> |
-              <%= link_to "Leave", controller: "enrollment", action: "destroy", id: -1 %>
+              <%= link_to "Continue", action: "show", id: enrollment.course %> |
+              <%= link_to 'Leave', enrollment, method: :delete, data: { confirm: 'Are you sure?' } %>
             </td>
           </tr>
           <% end %>
