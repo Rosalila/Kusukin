@@ -1,6 +1,10 @@
 class Course < ActiveRecord::Base
-  belongs_to :category
   dragonfly_accessor :image
+  
   has_many :sections
+  has_many :enrollments
+  has_many :users, through: :enrollments 
+  
   belongs_to :user
+  belongs_to :category
 end
