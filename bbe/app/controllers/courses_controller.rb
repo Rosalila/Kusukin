@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_action :set_course, only: [:show, :edit, :update, :destroy, :join_enrollment]
 
   layout 'backend/dashboard'
   # GET /courses
@@ -15,8 +15,25 @@ class CoursesController < ApplicationController
 
   # GET /courses/1
   # GET /courses/1.json
-  def show
-    
+  def show  
+  end
+  
+  def join_enrollment
+      enrollment = Enrollment.new
+      enrollment.user_id = current_user.id
+      enrollment.course_id = @course.id
+      enrollment.progress = 0
+      
+      #verify if a user have enrollments before save it    
+      if enrollment.user_has_enrollments
+        redirect_to in_progress_courses_path
+      else
+        if enrollment.save
+           redirect_to in_progress_courses_path   
+        else
+           redirect_to :back
+        end
+      end
   end
 
   # GET /courses/new

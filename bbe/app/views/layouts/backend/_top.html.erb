@@ -1,14 +1,41 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Bbe</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-<%= yield %>
-
-</body>
-</html>
+  <header class="main-header">
+        <% image = current_user.image.nil? ? "/backend/dist/img/avatar04.png": current_user.image  %>
+        <!-- Logo -->
+        <a href="index2.html" class="logo"><b>The More You Be</b></a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top" role="navigation">
+          <!-- Sidebar toggle button-->
+          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+          </a>
+          <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+              <li class="dropdown user user-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <img src="<%= image %>" class="user-image" alt="User Image" />
+                  <span class="hidden-xs"><%= current_user.name %></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <!-- User image -->
+                  <li class="user-header">
+                    <img src="<%= image %>" class="img-circle" alt="User Image" />
+                    <p>
+                      <%= current_user.name %>
+                      <small>Member since <%= time_ago_in_words(current_user.created_at) %> ago</small>
+                    </p>
+                  </li>
+                  <!-- Menu Footer-->
+                  <li class="user-footer">
+                    <div class="pull-left">
+                      <a href="#" class="btn btn-default btn-flat">Profile</a>
+                    </div>
+                    <div class="pull-right">
+                      <%= link_to 'Sign out', destroy_user_session_path, :method => :delete, class: "btn btn-default btn-flat" %>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>

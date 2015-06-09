@@ -1,0 +1,389 @@
+=> Booting WEBrick
+=> Rails 4.2.0 application starting in development on http://0.0.0.0:3000
+=> Run `rails server -h` for more startup options
+=> Ctrl-C to shutdown server
+
+
+Started GET "/" for 190.4.9.18 at 2015-06-09 21:17:12 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HomeController#index as HTML
+  [1m[35mCategory Load (0.3ms)[0m  SELECT "categories".* FROM "categories"
+  [1m[36mCourse Load (0.3ms)[0m  [1mSELECT "courses".* FROM "courses"[0m
+  [1m[35mCategory Load (0.2ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCategory Load (0.1ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCategory Load (0.1ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 8]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCategory Load (0.1ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 9]]
+  Rendered home/index.html.erb within layouts/frontend/homepage (138.4ms)
+Completed 200 OK in 364ms (Views: 326.4ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/assets/achievements-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:17:13 +0000
+
+
+Started GET "/assets/backend-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:17:13 +0000
+
+
+Started GET "/assets/categories-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:17:13 +0000
+
+
+Started GET "/assets/courses-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:17:13 +0000
+
+
+Started GET "/assets/enrollment-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:17:13 +0000
+
+
+Started GET "/assets/home-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:17:13 +0000
+
+
+Started GET "/assets/homework_payments-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:17:13 +0000
+
+
+Started GET "/assets/homeworks-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:17:13 +0000
+
+
+Started GET "/assets/paths-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:17:13 +0000
+
+
+Started GET "/assets/sections-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:17:13 +0000
+
+
+Started GET "/assets/application-7cf83444e4802a71502ab6abe4298df3.js?body=1" for 190.4.9.18 at 2015-06-09 21:17:13 +0000
+
+
+Started DELETE "/users/sign_out" for 190.4.9.18 at 2015-06-09 21:17:15 +0000
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"pm+myH7vaByJEuEoRNp924yd8rM5yqDSl6/CePloj4jPGD9E+G5CkEim0YkYOvCexYUPye+xZVms84qOEZsSHg=="}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 9]]
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+Redirected to http://checho-box-195086.use1.nitrousbox.com/
+Completed 302 Found in 8ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 190.4.9.18 at 2015-06-09 21:17:15 +0000
+Processing by HomeController#index as HTML
+  [1m[35mCategory Load (0.3ms)[0m  SELECT "categories".* FROM "categories"
+  [1m[36mCourse Load (0.2ms)[0m  [1mSELECT "courses".* FROM "courses"[0m
+  [1m[35mCategory Load (0.1ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCategory Load (0.1ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCategory Load (0.1ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 8]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCategory Load (0.1ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 3]]
+  Rendered home/index.html.erb within layouts/frontend/homepage (30.2ms)
+Completed 200 OK in 149ms (Views: 146.8ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/assets/achievements-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:17:16 +0000
+
+
+Started GET "/assets/home-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:17:16 +0000
+
+
+Started GET "/assets/backend-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:17:16 +0000
+
+
+Started GET "/assets/courses-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:17:16 +0000
+
+
+Started GET "/assets/categories-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:17:16 +0000
+
+
+Started GET "/assets/enrollment-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:17:16 +0000
+
+
+Started GET "/assets/homework_payments-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:17:16 +0000
+
+
+Started GET "/assets/homeworks-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:17:16 +0000
+
+
+Started GET "/assets/paths-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:17:16 +0000
+
+
+Started GET "/assets/application-7cf83444e4802a71502ab6abe4298df3.js?body=1" for 190.4.9.18 at 2015-06-09 21:17:16 +0000
+
+
+Started GET "/assets/sections-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:17:16 +0000
+
+
+Started POST "/users" for 190.4.9.18 at 2015-06-09 21:17:46 +0000
+
+LoadError (Unable to autoload constant RegistrationsController, expected /home/action/workspace/HackathonSmartCities/bbe/app/controllers/registrations_controller.rb to define it):
+  activesupport (4.2.0) lib/active_support/dependencies.rb:495:in `load_missing_constant'
+  activesupport (4.2.0) lib/active_support/dependencies.rb:184:in `const_missing'
+  activesupport (4.2.0) lib/active_support/inflector/methods.rb:261:in `const_get'
+  activesupport (4.2.0) lib/active_support/inflector/methods.rb:261:in `block in constantize'
+  activesupport (4.2.0) lib/active_support/inflector/methods.rb:259:in `each'
+  activesupport (4.2.0) lib/active_support/inflector/methods.rb:259:in `inject'
+  activesupport (4.2.0) lib/active_support/inflector/methods.rb:259:in `constantize'
+  activesupport (4.2.0) lib/active_support/dependencies.rb:566:in `get'
+  activesupport (4.2.0) lib/active_support/dependencies.rb:597:in `constantize'
+  actionpack (4.2.0) lib/action_dispatch/routing/route_set.rb:69:in `controller_reference'
+  actionpack (4.2.0) lib/action_dispatch/routing/route_set.rb:59:in `controller'
+  actionpack (4.2.0) lib/action_dispatch/routing/route_set.rb:38:in `serve'
+  actionpack (4.2.0) lib/action_dispatch/routing/mapper.rb:49:in `serve'
+  actionpack (4.2.0) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.0) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.0) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.0) lib/action_dispatch/routing/route_set.rb:802:in `call'
+  omniauth (1.2.2) lib/omniauth/strategy.rb:186:in `call!'
+  omniauth (1.2.2) lib/omniauth/strategy.rb:164:in `call'
+  dragonfly (1.0.7) lib/dragonfly/middleware.rb:14:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.6.0) lib/rack/etag.rb:24:in `call'
+  rack (1.6.0) lib/rack/conditionalget.rb:38:in `call'
+  rack (1.6.0) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.0) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.0) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.0) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.0) lib/active_record/connection_adapters/abstract/connection_pool.rb:647:in `call'
+  activerecord (4.2.0) lib/active_record/migration.rb:378:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:88:in `call'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:88:in `_run_callbacks'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:734:in `_run_call_callbacks'
+  activesupport (4.2.0) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.0) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  web-console (2.0.0) lib/action_dispatch/debug_exceptions.rb:18:in `middleware_call'
+  web-console (2.0.0) lib/action_dispatch/debug_exceptions.rb:13:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  dragonfly (1.0.7) lib/dragonfly/cookie_monster.rb:9:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  /home/action/.parts/packages/ruby2.1/2.1.1/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/action/.parts/packages/ruby2.1/2.1.1/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/action/.parts/packages/ruby2.1/2.1.1/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/action/.gem/ruby/2.1.1/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_source.erb (6.1ms)
+  Rendered /home/action/.gem/ruby/2.1.1/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_trace.html.erb (2.5ms)
+  Rendered /home/action/.gem/ruby/2.1.1/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered /home/action/.gem/ruby/2.1.1/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.5ms)
+  Rendered /home/action/.gem/ruby/2.1.1/gems/web-console-2.0.0/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (44.0ms)
+
+
+Started POST "/users" for 190.4.9.18 at 2015-06-09 21:19:27 +0000
+Processing by RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"4L34u7P0rh1TqKzFaxHfeB316lk6GcbfaYN4FumoPjFQ1sN06IxzE4ORJOxATtpZNtaKSCkswCwxacq9gP/M/A==", "user"=>{"name"=>"Chuchito", "email"=>"serpel_js2@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+Unpermitted parameter: password_confirmation
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'serpel_js2@gmail.com' LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "users" ("name", "email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Chuchito"], ["email", "serpel_js2@gmail.com"], ["encrypted_password", "$2a$10$5CXnk6bgCTqI6hfLnnpWv.zZS5cHhUBhtA94Tcb4HZu9ouQ.bey9i"], ["created_at", "2015-06-09 21:19:28.254299"], ["updated_at", "2015-06-09 21:19:28.254299"]]
+  [1m[36m (27.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mUPDATE "users" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "last_sign_in_ip" = ?, "current_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["last_sign_in_at", "2015-06-09 21:19:28.284348"], ["current_sign_in_at", "2015-06-09 21:19:28.284348"], ["last_sign_in_ip", "190.4.9.18"], ["current_sign_in_ip", "190.4.9.18"], ["sign_in_count", 1], ["updated_at", "2015-06-09 21:19:28.285619"], ["id", 10]]
+  [1m[35m (13.3ms)[0m  commit transaction
+Redirected to http://checho-box-195086.use1.nitrousbox.com/courses/in_progress
+Completed 302 Found in 183ms (ActiveRecord: 42.9ms)
+
+
+Started GET "/courses/in_progress" for 190.4.9.18 at 2015-06-09 21:19:28 +0000
+Processing by CoursesController#in_progress as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 10]]
+  [1m[35mEnrollment Load (0.2ms)[0m  SELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."user_id" = ?  [["user_id", 10]]
+  Rendered courses/in_progress.html.erb within layouts/backend/dashboard (2.1ms)
+  Rendered layouts/backend/_top.html.erb (1.3ms)
+  Rendered layouts/backend/_sidebar.html.erb (0.7ms)
+  Rendered layouts/backend/_footer.html.erb (0.3ms)
+Completed 200 OK in 143ms (Views: 129.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/home-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:19:28 +0000
+
+
+Started GET "/assets/backend-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:19:28 +0000
+
+
+Started GET "/assets/categories-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:19:28 +0000
+
+
+Started GET "/assets/achievements-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:19:28 +0000
+
+
+Started GET "/assets/enrollment-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:19:28 +0000
+
+
+Started GET "/assets/courses-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:19:28 +0000
+
+
+Started GET "/assets/homework_payments-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:19:29 +0000
+
+
+Started GET "/assets/homeworks-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:19:29 +0000
+
+
+Started GET "/assets/paths-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:19:29 +0000
+
+
+Started GET "/assets/sections-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:19:29 +0000
+
+
+Started GET "/assets/application-7cf83444e4802a71502ab6abe4298df3.js?body=1" for 190.4.9.18 at 2015-06-09 21:19:29 +0000
+
+
+Started DELETE "/users/sign_out" for 190.4.9.18 at 2015-06-09 21:19:41 +0000
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"38LcnLA5rvw/TB7tWYVRX9ER3fWYcm92In8RzrhXvm1vqedT60Fz8u91lsRy2lR++jK95ItHaYV6laNl0QBMoA=="}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 10]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+Redirected to http://checho-box-195086.use1.nitrousbox.com/
+Completed 302 Found in 6ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 190.4.9.18 at 2015-06-09 21:19:41 +0000
+Processing by HomeController#index as HTML
+  [1m[35mCategory Load (0.3ms)[0m  SELECT "categories".* FROM "categories"
+  [1m[36mCourse Load (0.3ms)[0m  [1mSELECT "courses".* FROM "courses"[0m
+  [1m[35mCategory Load (0.2ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCategory Load (0.1ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCategory Load (0.1ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 8]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCategory Load (0.1ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 3]]
+  Rendered home/index.html.erb within layouts/frontend/homepage (33.8ms)
+Completed 200 OK in 180ms (Views: 168.1ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/assets/backend-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:19:41 +0000
+
+
+Started GET "/assets/categories-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:19:41 +0000
+
+
+Started GET "/assets/achievements-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:19:41 +0000
+
+
+Started GET "/assets/courses-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:19:41 +0000
+
+
+Started GET "/assets/enrollment-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:19:41 +0000
+
+
+Started GET "/assets/home-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:19:41 +0000
+
+
+Started GET "/assets/homework_payments-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:19:42 +0000
+
+
+Started GET "/assets/homeworks-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:19:42 +0000
+
+
+Started GET "/assets/paths-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:19:42 +0000
+
+
+Started GET "/assets/sections-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:19:42 +0000
+
+
+Started GET "/assets/application-7cf83444e4802a71502ab6abe4298df3.js?body=1" for 190.4.9.18 at 2015-06-09 21:19:42 +0000
+
+
+Started GET "/users/auth/facebook" for 190.4.9.18 at 2015-06-09 21:19:57 +0000
+I, [2015-06-09T21:19:57.878931 #5634]  INFO -- omniauth: (facebook) Request phase initiated.
+
+
+Started GET "/users/auth/facebook" for 190.4.9.18 at 2015-06-09 21:19:58 +0000
+I, [2015-06-09T21:19:58.245839 #5634]  INFO -- omniauth: (facebook) Request phase initiated.
+
+
+Started GET "/users/auth/facebook/callback?code=AQDLK0oy0F-94urQPWAoD8_DuLysGcSDxLXgqnitiimKlDOpZ0TE6DGQIFn2RQh5Q-MGKTHRUTAIS2rsuIWvgcXCMpIxPDLmXMKzxUny5IajKM7L9WS6imQVXY_6kayl4WUcZjS-QlaOMUOH7ky6kI3RR_HqRwcYVfXxJEx-q_NZ5qysFSu_XsCE2obJ0jNtKisdr_dTQXrk0pmZiLc1fOQJbMDORiLdaVUB7-7nB8u-MKH2uuX0oZATDhV1ZUk-tQAm1RiRAOw_m1WWy1F2tp1d-ngU8Cc0wIXLQ9dOgw0lADYAjepVSlRso95N_LJUJQTbVqIL_2W6pMRNaOL33MIq&state=0e8bd21effca40955f7b34510ba84225277c9f4a6c15c8bc" for 190.4.9.18 at 2015-06-09 21:19:58 +0000
+I, [2015-06-09T21:19:58.614774 #5634]  INFO -- omniauth: (facebook) Callback phase initiated.
+Processing by CallbacksController#facebook as HTML
+  Parameters: {"code"=>"AQDLK0oy0F-94urQPWAoD8_DuLysGcSDxLXgqnitiimKlDOpZ0TE6DGQIFn2RQh5Q-MGKTHRUTAIS2rsuIWvgcXCMpIxPDLmXMKzxUny5IajKM7L9WS6imQVXY_6kayl4WUcZjS-QlaOMUOH7ky6kI3RR_HqRwcYVfXxJEx-q_NZ5qysFSu_XsCE2obJ0jNtKisdr_dTQXrk0pmZiLc1fOQJbMDORiLdaVUB7-7nB8u-MKH2uuX0oZATDhV1ZUk-tQAm1RiRAOw_m1WWy1F2tp1d-ngU8Cc0wIXLQ9dOgw0lADYAjepVSlRso95N_LJUJQTbVqIL_2W6pMRNaOL33MIq", "state"=>"0e8bd21effca40955f7b34510ba84225277c9f4a6c15c8bc"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."provider" = ? AND "users"."uid" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["provider", "facebook"], ["uid", "1157162504309488"]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE "users" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["last_sign_in_at", "2015-06-09 20:23:58.306180"], ["current_sign_in_at", "2015-06-09 21:19:59.053371"], ["sign_in_count", 13], ["updated_at", "2015-06-09 21:19:59.055286"], ["id", 8]]
+  [1m[36m (68.9ms)[0m  [1mcommit transaction[0m
+Redirected to http://checho-box-195086.use1.nitrousbox.com/courses/in_progress
+Completed 302 Found in 76ms (ActiveRecord: 69.7ms)
+
+
+Started GET "/courses/in_progress" for 190.4.9.18 at 2015-06-09 21:19:59 +0000
+Processing by CoursesController#in_progress as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 8]]
+  [1m[36mEnrollment Load (0.2ms)[0m  [1mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."user_id" = ?[0m  [["user_id", 8]]
+  [1m[35mCourse Load (0.2ms)[0m  SELECT  "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT  "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35mCourse Load (0.1ms)[0m  SELECT  "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1  [["id", 5]]
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT  "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCourse Load (0.1ms)[0m  SELECT  "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1  [["id", 8]]
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT  "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1[0m  [["id", 10]]
+  [1m[35mCourse Load (0.1ms)[0m  SELECT  "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1  [["id", 3]]
+  Rendered courses/in_progress.html.erb within layouts/backend/dashboard (18.9ms)
+  Rendered layouts/backend/_top.html.erb (0.9ms)
+  Rendered layouts/backend/_sidebar.html.erb (0.2ms)
+  Rendered layouts/backend/_footer.html.erb (0.0ms)
+Completed 200 OK in 144ms (Views: 140.6ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/assets/achievements-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:19:59 +0000
+
+
+Started GET "/assets/homework_payments-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:19:59 +0000
+
+
+Started GET "/assets/home-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:19:59 +0000
+
+
+Started GET "/assets/backend-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:19:59 +0000
+
+
+Started GET "/assets/categories-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:19:59 +0000
+
+
+Started GET "/assets/courses-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:19:59 +0000
+
+
+Started GET "/assets/enrollment-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:19:59 +0000
+
+
+Started GET "/assets/homeworks-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:19:59 +0000
+
+
+Started GET "/assets/paths-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:19:59 +0000
+
+
+Started GET "/assets/sections-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 190.4.9.18 at 2015-06-09 21:19:59 +0000
+
+
+Started GET "/assets/application-7cf83444e4802a71502ab6abe4298df3.js?body=1" for 190.4.9.18 at 2015-06-09 21:19:59 +0000
+Exiting

@@ -140,8 +140,10 @@
              </div>
              <div class="form-group">
                 <div class="box-footer">
-                   <button type="submit" class="btn btn-success">Login</button>
-                   <a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a>
+                   <%= f.submit "Login", class: "btn btn-success" %>
+                   <%= link_to "Login with Facebook", user_omniauth_authorize_path(:facebook), class: "btn btn-primary" %>
+                   <!--<button type="submit" class="btn btn-success">Login</button>
+                   <a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a>-->
                 </div>
              </div>
              <div class="form-group">
@@ -163,6 +165,16 @@
             <%= devise_error_messages! %>
 
              <div class="form-group">
+               <%= f.label :name %><br />
+               <%= f.text_field :name, autofocus: true, class: "form-control" %>
+             </div>     
+         
+             <!--<div class="form-group">
+              <%= f.label :image %><br />
+              <%= f.file_field :image, class: "form-control" %>
+             </div>-->
+         
+             <div class="form-group">
                 <%= f.label :email %><br />
                 <%= f.email_field :email, autofocus: true, class: "form-control" %>
              </div>
@@ -183,7 +195,8 @@
            <div class="form-group">
              <%= f.submit "Sign up", class: "btn btn-info" %>
              <span style="margin-left:8px;margin-right:8px">or</span>  
-             <%= f.submit "Sign Up with Facebook", class: "btn btn-primary" %>
+             <%#= f.submit "Sign Up with Facebook", user_omniauth_authorize_path(:facebook), class: "btn btn-primary" %>
+             <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook), class: "btn btn-primary" %>
            </div>
          
            <div class="form-group">
