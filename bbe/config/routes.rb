@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :courses do
     collection do
       get 'in_progress'
+      get 'join_enrollment'
     end
   end
 
@@ -22,7 +23,7 @@ Rails.application.routes.draw do
   
   resources :enrollment
 
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "callbacks", :registrations => "registrations" }
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

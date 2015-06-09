@@ -1,6 +1,5 @@
 class HomeController < ApplicationController
-  
-  layout 'frontend/homepage'
+  layout 'frontend/homepage', only: [:index]
   
   def index
     @categories = Category.all

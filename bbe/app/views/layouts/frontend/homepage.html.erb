@@ -80,15 +80,15 @@
                     <nav class="collapse navigation navbar-collapse navbar-right" role="navigation">
                         <ul id="nav" class="nav navbar-nav">
                             <li class="current"><a href="/#home">Home</a></li>
-                            <% if current_user != nil %>
-                              <li><a href="/backend/courses">Dashboard</a></li>
+                            <% if user_signed_in? %>
+                            <li><%= link_to "Dashboard", in_progress_courses_path %></li>
                             <% end %>
                             <li><a href="/#portfolio">Courses</a></li>
  
                             <li><a href="/#about">About</a></li>
 
                             <!--Login & sign up nav -->
-                            <% if current_user == nil %>
+                            <% if !user_signed_in? %>
                               <li><a href="/#login">Log in</a></li>
                             <% else %>
                               <li>
@@ -198,7 +198,7 @@
                         </div>
 
                         <div class="copyright">
-                            <p>Developed by <a target="_blank" href="http://www.themefisher.com">Rosalila</a></p>
+                            <p>Developed by <a target="_blank" href="http://www.rosalilastudio.com/">Rosalila</a></p>
                         </div>
 
                     </div>
