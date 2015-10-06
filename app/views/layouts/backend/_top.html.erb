@@ -1,5 +1,7 @@
   <header class="main-header">
-        <% image = current_user.image.nil? ? "/backend/dist/img/avatar04.png": current_user.image  %>
+        <% if current_user %>
+          <% image = current_user.image.nil? ? "/backend/dist/img/avatar04.png": current_user.image  %>
+        <% end %>
         <!-- Logo -->
         <a href="index2.html" class="logo"><b>The More You Be</b></a>
         <!-- Header Navbar: style can be found in header.less -->
@@ -11,6 +13,7 @@
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
               <li class="dropdown user user-menu">
+                <% if current_user %>
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <img src="<%= image %>" class="user-image" alt="User Image" />
                   <span class="hidden-xs"><%= current_user.name %></span>
@@ -34,6 +37,11 @@
                     </div>
                   </li>
                 </ul>
+                <% else %>
+                  <a href="http://localhost:3000/#login" class="dropdown-toggle">
+                    <span class="hidden-xs">Login</span>
+                  </a>
+                <% end %>
               </li>
             </ul>
           </div>

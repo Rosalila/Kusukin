@@ -30,4 +30,4 @@ Gemfile.lock
 /vendor/assets/bower_components
 *.bowerrc
 bower.json
-config/initializers/devise.rb
+/config/initializers/devise.rb
