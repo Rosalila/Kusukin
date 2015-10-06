@@ -16,6 +16,7 @@ class CoursesController < ApplicationController
   # GET /courses/1
   # GET /courses/1.json
   def show  
+    @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions = {})
   end
   
   def join_enrollment
