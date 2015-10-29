@@ -1,0 +1,16 @@
+web:
+  build: .
+  command: bash -c "bundle exec rails s -p 8080 -b '0.0.0.0'"
+  volumes:
+    - ./:/web
+  ports:
+    - "8084:8080"
+  links:
+    - db
+  environment:
+    - SECRET_KEY_BASE=your_secret_key
+    - SECRET_TOKEN=your_secret_token
+db:
+  image: postgres
+  ports:
+    - "5432"

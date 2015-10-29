@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150609153332) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "achievements", force: :cascade do |t|
     t.string   "title"
     t.integer  "user_id"
@@ -21,8 +24,8 @@ ActiveRecord::Schema.define(version: 20150609153332) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "achievements", ["course_id"], name: "index_achievements_on_course_id"
-  add_index "achievements", ["user_id"], name: "index_achievements_on_user_id"
+  add_index "achievements", ["course_id"], name: "index_achievements_on_course_id", using: :btree
+  add_index "achievements", ["user_id"], name: "index_achievements_on_user_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -38,8 +41,8 @@ ActiveRecord::Schema.define(version: 20150609153332) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "course_paths", ["course_id"], name: "index_course_paths_on_course_id"
-  add_index "course_paths", ["path_id"], name: "index_course_paths_on_path_id"
+  add_index "course_paths", ["course_id"], name: "index_course_paths_on_course_id", using: :btree
+  add_index "course_paths", ["path_id"], name: "index_course_paths_on_path_id", using: :btree
 
   create_table "courses", force: :cascade do |t|
     t.string   "name"
@@ -51,8 +54,8 @@ ActiveRecord::Schema.define(version: 20150609153332) do
     t.integer  "user_id"
   end
 
-  add_index "courses", ["category_id"], name: "index_courses_on_category_id"
-  add_index "courses", ["user_id"], name: "index_courses_on_user_id"
+  add_index "courses", ["category_id"], name: "index_courses_on_category_id", using: :btree
+  add_index "courses", ["user_id"], name: "index_courses_on_user_id", using: :btree
 
   create_table "enrollments", force: :cascade do |t|
     t.integer  "progress"
@@ -62,8 +65,8 @@ ActiveRecord::Schema.define(version: 20150609153332) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "enrollments", ["course_id"], name: "index_enrollments_on_course_id"
-  add_index "enrollments", ["user_id"], name: "index_enrollments_on_user_id"
+  add_index "enrollments", ["course_id"], name: "index_enrollments_on_course_id", using: :btree
+  add_index "enrollments", ["user_id"], name: "index_enrollments_on_user_id", using: :btree
 
   create_table "homework_payments", force: :cascade do |t|
     t.integer  "user_id"
@@ -72,8 +75,8 @@ ActiveRecord::Schema.define(version: 20150609153332) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "homework_payments", ["homework_id"], name: "index_homework_payments_on_homework_id"
-  add_index "homework_payments", ["user_id"], name: "index_homework_payments_on_user_id"
+  add_index "homework_payments", ["homework_id"], name: "index_homework_payments_on_homework_id", using: :btree
+  add_index "homework_payments", ["user_id"], name: "index_homework_payments_on_user_id", using: :btree
 
   create_table "homeworks", force: :cascade do |t|
     t.string   "link"
@@ -83,7 +86,7 @@ ActiveRecord::Schema.define(version: 20150609153332) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "homeworks", ["section_id"], name: "index_homeworks_on_section_id"
+  add_index "homeworks", ["section_id"], name: "index_homeworks_on_section_id", using: :btree
 
   create_table "paths", force: :cascade do |t|
     t.string   "name"
@@ -105,7 +108,7 @@ ActiveRecord::Schema.define(version: 20150609153332) do
     t.decimal  "price"
   end
 
-  add_index "sections", ["course_id"], name: "index_sections_on_course_id"
+  add_index "sections", ["course_id"], name: "index_sections_on_course_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -126,7 +129,18 @@ ActiveRecord::Schema.define(version: 20150609153332) do
     t.string   "name"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "achievements", "courses"
+  add_foreign_key "achievements", "users"
+  add_foreign_key "course_paths", "courses"
+  add_foreign_key "courses", "categories"
+  add_foreign_key "courses", "users"
+  add_foreign_key "enrollments", "courses"
+  add_foreign_key "enrollments", "users"
+  add_foreign_key "homework_payments", "homeworks"
+  add_foreign_key "homework_payments", "users"
+  add_foreign_key "homeworks", "sections"
+  add_foreign_key "sections", "courses"
 end
