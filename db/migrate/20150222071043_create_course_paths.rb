@@ -7,6 +7,5 @@ class CreateCoursePaths < ActiveRecord::Migration
       t.timestamps null: false
     end
     add_foreign_key :course_paths, :courses
-    add_foreign_key :course_paths, :paths
   end
 end
