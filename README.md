@@ -15,3 +15,13 @@ Hackathon SmartCities http://www.global.datafest.net/
 9. ```docker-compose start``` to run your project
 10. Check the ```http://localhost:8084``` url for working project again
 11. Stop it with ```docker-compose stop```
+
+##### Notes
+Do not forget to run Docker service without sudo after installation and before running ```docker-compose build```:
+
+* Add the docker group if it doesn't already exist.
+```sudo groupadd docker```
+* Add the connected user "${USERNAME}" to the docker group.
+```sudo gpasswd -a ${USERNAME} docker```
+* Restart the docker daemon (if your Linux distro uses systemd)
+```sudo systemctl restart docker```
