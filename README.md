@@ -18,7 +18,7 @@ the learning route: "The Rails Ninja" will be divided into HTML, CSS, and Ruby c
 * Achievements system.
 
 ### Technical background:
-This project is developed in Ruby on rails, also it contains the following libraries:
+This project is developed in Ruby on rails, also it contains the following libraries and tools:
 * Docker
 * AdminLTE template
 
