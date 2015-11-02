@@ -1,32 +1,28 @@
 class EnrollmentController < ApplicationController
   #before_action :set_enrollment, only: [:index, :show, :destroy]
-  
+
   layout 'backend/dashboard'
-  def show 
+  def show
   end
-  
-  def new  
-    course = Course.find(params[:id])  
+
+  def new
+    course = Course.find(params[:id])
 
     if !course.nil?
       enrollment = Enrollment.new
       enrollment.user_id = current_user.id
       enrollment.course_id = course.id
       enrollment.progress = 0
-      
+
       #verify if a user have enrollments before save it
-      if !enrollment.user_has_enrollments
-        if enrollment.save
-           redirect_to in_progress_courses_path   
-        else
-           redirect_to :back
-        end
+      unless enrollment.user_has_enrollments
+        enrollment.save ? redirect_to(in_progress_courses_path) : redirect_to(:back)
       end
-      
+
       redirect_to in_progress_courses_path
     end
   end
-  
+
   # DELETE /enrollment/1
   # DELETE /enrollment/1.json
   def destroy
@@ -37,5 +33,5 @@ class EnrollmentController < ApplicationController
       format.json { head :no_content }
     end
   end
- 
+
 end
