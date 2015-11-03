@@ -1,5 +1,4 @@
 module ApplicationHelper
-
   def myBalance
     client = DogecoinClient.new
 		if client.valid?
@@ -15,5 +14,4 @@ module ApplicationHelper
     end
     return "error"
   end
-
 end

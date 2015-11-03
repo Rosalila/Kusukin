@@ -62,13 +62,13 @@ class PathsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_path
-      @path = Path.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_path
+    @path = Path.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def path_params
-      params.require(:path).permit(:name, :description, :creator_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def path_params
+    params.require(:path).permit(:name, :description, :creator_id)
+  end
 end

@@ -8,7 +8,7 @@ class EnrollmentController < ApplicationController
   def new
     course = Course.find(params[:id])
 
-    if !course.nil?
+    unless course.nil?
       enrollment = Enrollment.new
       enrollment.user_id = current_user.id
       enrollment.course_id = course.id
@@ -33,5 +33,4 @@ class EnrollmentController < ApplicationController
       format.json { head :no_content }
     end
   end
-
 end
