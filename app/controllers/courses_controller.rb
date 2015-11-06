@@ -80,7 +80,7 @@ class CoursesController < ApplicationController
     @course.destroy
     #respond_to do |format|
     #  format.html { redirect_to courses_url, notice: 'Course was successfully destroyed.' }
-      redirect_to "/backend/courses"
+    redirect_to "/backend/courses"
     #end
   end
 
