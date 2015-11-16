@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   get '/backend/balance', to: 'backend#balance', as: 'backend_balance'
   get '/backend/checked_assignments', to: 'backend#checked_assignments', as: 'backend_checked_assignments'
   get '/backend/pending_assignments', to: 'backend#pending_assignments', as: 'backend_pending_assignments'
+  get '/profile/:id' => 'home#profile'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
