@@ -11,7 +11,7 @@
   <section class="content">
     <!-- Small boxes (Stat box) -->
     <div class="row">
-      <% Course.where(:user_id=>current_user.id).each do |c| %>
+      <% Course.where(:user_id=>current_user.id).order('created_at DESC').each do |c| %>
       <div class="col-lg-3 col-xs-6">
         <!-- small box -->
         <div class="small-box bg-aqua">
