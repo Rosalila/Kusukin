@@ -45,4 +45,5 @@
   <div class="box-footer">
     <button type="submit" class="btn btn-primary">Save</button>
   </div>
+  <%= link_to 'Destroy', @section, method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>

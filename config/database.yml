@@ -1,16 +1,27 @@
-development: &default
+default: &default
   adapter: postgresql
   encoding: unicode
-  database: themoaryoube_dev
+  # For details on connection pooling, see rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: 5
-  username: postgres
-  password:
-  host: db
+  host: localhost
+  username: rails
+  password: <%= ENV['APP_DATABASE_PASSWORD'] %>
 
+development:
+  <<: *default
+  database: rails_project_development
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: themoaryoube_test
+  database: rails_project_test
 
 production:
   <<: *default
-  database: themoaryoube_prod
+  database: rails_project_production
+  username: rails
+  password: <%= ENV['APP_DATABASE_PASSWORD'] %>
+

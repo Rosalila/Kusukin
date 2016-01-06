@@ -3,7 +3,7 @@ class Users::SessionsController < Devise::SessionsController
   
   layout '/backend/dashboard'
 
-  GET /resource/sign_in
+  # GET /resource/sign_in
   def new
     super
     redirect_to "www.google.com"

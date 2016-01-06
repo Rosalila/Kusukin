@@ -16,7 +16,7 @@
               <!-- The time line -->
               <ul class="timeline">
                 <!-- timeline time label -->
-                <% @course.sections.each do |section| %>
+                <% @course.sections.order('created_at ASC').each do |section| %>
                 <li class="time-label">
                   <span class="bg-red">
                     <%= "#{section.number}: #{section.title}" %>
