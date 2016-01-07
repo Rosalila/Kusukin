@@ -3,6 +3,9 @@ require 'test_helper'
 class CoursesControllerTest < ActionController::TestCase
   setup do
     @course = courses(:one)
+
+    @user = users(:one)
+    sign_in @user
   end
 
   test "should get index" do
@@ -21,7 +24,7 @@ class CoursesControllerTest < ActionController::TestCase
       post :create, course: { category_id: @course.category_id, description: @course.description, name: @course.name }
     end
 
-    assert_redirected_to course_path(assigns(:course))
+    assert_redirected_to controller: 'backend', action: 'courses'
   end
 
   test "should show course" do
@@ -44,6 +47,6 @@ class CoursesControllerTest < ActionController::TestCase
       delete :destroy, id: @course
     end
 
-    assert_redirected_to courses_path
+    assert_redirected_to controller: 'backend', action: 'courses'
   end
 end

@@ -1,9 +1,5 @@
 require 'test_helper'
 
 class EnrollmentControllerTest < ActionController::TestCase
-  test "should get join" do
-    get :join
-    assert_response :success
-  end
-
+  #TO-DO. Correct routes and maybe name of controller according to main business logic and new actions
 end

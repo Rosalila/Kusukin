@@ -52,7 +52,7 @@ class CoursesController < ApplicationController
       if @course.save
         #format.html { redirect_to @course, notice: 'Course was successfully createdd.' }
         #format.json { render "/backend/courses", status: :created, location: @course }
-        redirect_to :controller => 'backend', :action => 'courses'
+        redirect_to controller: 'backend', action: 'courses'
       else
         format.html { render :new }
         format.json { render json: @course.errors, status: :unprocessable_entity }
@@ -80,7 +80,7 @@ class CoursesController < ApplicationController
     @course.destroy
     #respond_to do |format|
     #  format.html { redirect_to courses_url, notice: 'Course was successfully destroyed.' }
-    redirect_to "/backend/courses"
+    redirect_to controller: 'backend', action: 'courses'
     #end
   end
 
