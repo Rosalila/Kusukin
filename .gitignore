@@ -32,3 +32,4 @@ Gemfile.lock
 *.bowerrc
 bower.json
 /config/initializers/devise.rb
+config/database.yml
