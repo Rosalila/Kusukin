@@ -3,7 +3,7 @@
           <% image = current_user.image.nil? ? "/backend/dist/img/avatar04.png": current_user.image  %>
         <% end %>
         <!-- Logo -->
-        <a href="index2.html" class="logo"><b>The More You Be</b></a>
+        <%= link_to raw('<b>The More You Be</b>'), {controller: 'courses', action: 'in_progress'}, class: 'logo' %>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
           <!-- Sidebar toggle button-->
