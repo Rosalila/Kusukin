@@ -30,7 +30,7 @@ class SectionsController < ApplicationController
       if @section.save
         #format.html { redirect_to @section, notice: 'Section was successfully created.' }
         #format.json { render :show, status: :created, location: @section }
-        redirect_to :controller => 'backend', :action => 'courses' , :course_id => @section.course.id
+        redirect_to controller: 'backend', action: 'courses' , course_id: @section.course.id
       else
         format.html { render :new }
         format.json { render json: @section.errors, status: :unprocessable_entity }
