@@ -2,6 +2,7 @@ class EnrollmentController < ApplicationController
   #before_action :set_enrollment, only: [:index, :show, :destroy]
 
   layout 'backend/dashboard'
+
   def show
   end
 

@@ -2,7 +2,10 @@ require 'test_helper'
 
 class SectionsControllerTest < ActionController::TestCase
   setup do
+    @course = courses(:one)
+
     @section = sections(:one)
+    @section.course = @course
   end
 
   test "should get index" do
@@ -18,10 +21,10 @@ class SectionsControllerTest < ActionController::TestCase
 
   test "should create section" do
     assert_difference('Section.count') do
-      post :create, section: { content: @section.content, course_id: @section.course_id, number: @section.number, videourl: @section.videourl }
+      post :create, section: { content: @section.content, course_id: @section.course.id, number: @section.number, videourl: @section.videourl }
     end
 
-    assert_redirected_to section_path(assigns(:section))
+    assert_redirected_to controller: 'backend', action: 'courses' , course_id: @section.course.id
   end
 
   test "should show section" do

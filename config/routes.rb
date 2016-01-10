@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :home
-  
+
   resources :homework_payments
 
   resources :homeworks
@@ -20,8 +20,8 @@ Rails.application.routes.draw do
   end
 
   resources :categories
-  
-  resources :enrollment
+
+  resource :enrollment
 
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks", :registrations => "registrations" }
 
