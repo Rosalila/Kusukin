@@ -6,29 +6,30 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Category.create(name: 'All', description: '')
-design = Category.create(name: 'Design', description: '')
-progra = Category.create(name: 'Programming', description: '')
-bussines = Category.create(name: 'Bussiness', description: '')
-gameplay = Category.create(name: 'Gameplay', description: '')
-Category.create(name: 'Graphics', description: '')
-Category.create(name: 'SFX', description: '')
-music = Category.create(name: 'Music', description: '')
-Category.create(name: 'Writer', description: '')
-other = Category.create(name: 'Other', description: '')
+user = User.create! name: 'John Doe', email: 'admin@admin.com', password: 'admin1234', password_confirmation:'admin1234'
 
-user = User.find_by_email('serpel.js@gmail.com')
-course1 = Course.create(name: 'Rails for dummies', description: 'Esta es una prueba de la descripcion del curso', category: progra )
-Course.create(name: 'Unity 3D', description: 'Esta es una prueba de la descripcion del curso', category: progra )
-Course.create(name: 'Flat Design', description: 'Esta es una prueba de la descripcion del curso', category: design )
-Course.create(name: 'Intro to play guitar', description: 'Esta es una prueba de la descripcion del curso', category: music )
-Course.create(name: 'HTML + CSS', description: 'Esta es una prueba de la descripcion del curso', category: progra )
-Course.create(name: 'JQuery for beginners', description: 'Esta es una prueba de la descripcion del curso', category: progra )
-Course.create(name: 'Photoshop for win hackathons', description: 'Esta es una prueba de la descripcion del curso', category: design )
-Course.create(name: 'A bussines man', description: 'Esta es una prueba de la descripcion del curso', category: bussines )
+categories = Category.create!([{ name: 'All'}, 
+	{name: 'Design'},
+	{name: 'Programming'}, 
+	{name: 'Gameplay'}, 
+	{name: 'Graphics'},
+	{name: 'SFX'},
+	{name: 'Music'},
+	{name: 'Writer'},
+	{name: 'Other'}])
 
-Section.create(number: 1, videourl: 'https://www.youtube.com/v/h7aSEuxaRjo', content: 'esto es el texto del curso', course: Course.first)
-Section.create(number: 2, videourl: 'https://www.youtube.com/v/Hr2Bc5qMhE4', content: 'esto es el texto del curso', course: Course.first)
-Section.create(number: 3, videourl: 'https://www.youtube.com/v/w5LZ8YErl2M', content: 'esto es el texto del curso', course: Course.first)
+courses = Course.create([{name: 'Rails for dummies', description: 'Testing', category_id: Category.where(name: 'Programming').first, user: user},
+	{name: 'Unity 3D', description: 'Testing', category: Category.where(name: 'Programming').first, user: user},
+	{name: 'Flat Design', description: 'Testing', category: Category.where(name: 'Design').first, user: user},
+    {name: 'Intro to play guitar', description: 'Testing', category: Category.where(name:'Music').first, user: user},
+	{name: 'HTML + CSS', description: 'Testing', category: Category.where(name: 'Programming').first, user: user}])
 
-Enrollment.create(user: user, course: course1, progress: 10)
+ryby_sections = Section.create([{number: 1, videourl: 'https://www.youtube.com/v/8I539U5lXWY', title: 'Install ruby on rails', course: Course.where(name: 'Rails for dummies').first},
+	{number: 2, videourl: 'https://www.youtube.com/v/f9G-W8RLuJ4', title: 'Arithmetic Operators', course: Course.where(name: 'Rails for dummies').first},
+	{number: 3, videourl: 'https://www.youtube.com/v/JdCyLqmoxOg', title: 'if - else - elsif', course: Course.where(name: 'Rails for dummies').first}])
+
+enrollments = Enrollment.create([{user: user, course: Course.where(name: 'Rails for dummies').first, progress: 0},
+	{user: user, course: Course.where(name: 'Unity 3D').first, progress: 0},
+	{user: user, course: Course.where(name: 'Flat Design').first, progress: 0},
+	{user: user, course: Course.where(name: 'Intro to play guitar').first, progress: 0},
+	{user: user, course: Course.where(name: 'HTML + CSS').first, progress: 0}])
