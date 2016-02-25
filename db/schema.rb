@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160225030927) do
+ActiveRecord::Schema.define(version: 20160225031449) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,6 +110,22 @@ ActiveRecord::Schema.define(version: 20160225030927) do
   end
 
   add_index "sections", ["course_id"], name: "index_sections_on_course_id", using: :btree
+
+  create_table "user_achievements", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "achievement_id"
+    t.boolean  "is_unlocked"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "user_course_data", force: :cascade do |t|
+    t.integer  "course_id"
+    t.integer  "user_id"
+    t.text     "json_data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
