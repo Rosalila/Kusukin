@@ -6,12 +6,13 @@
     </h1>
   </section>
   <section class="content">
-  <ul>
-    <%Course.where(:user_id=>@user.id).order('created_at ASC').each do |course|%>
-      <li>
-        <a href="/courses/<%=course.id%>"><%=course.name%></a>
-      </li>
-    <%end%>
+    <ul>
+      <%Course.where(:user_id=>@user.id).order('created_at ASC').each do |course|%>
+        <li>
+          <a href="/courses/<%=course.id%>"><%=course.name%></a>
+        </li>
+      <%end%>
+    </ul>
+  <%= render '/home/game'%>
   </section>
-  <ul>
 </div>

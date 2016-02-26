@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160225031449) do
+ActiveRecord::Schema.define(version: 20160225230013) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -119,7 +119,7 @@ ActiveRecord::Schema.define(version: 20160225031449) do
     t.datetime "updated_at",     null: false
   end
 
-  create_table "user_course_data", force: :cascade do |t|
+  create_table "user_course_storages", force: :cascade do |t|
     t.integer  "course_id"
     t.integer  "user_id"
     t.text     "json_data"

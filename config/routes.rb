@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  post 'javascript_api/test' => 'javascript_api#test'
+  post 'javascript_api/save_progress' => 'javascript_api#save_progress'
+  get 'javascript_api/get_progress' => 'javascript_api#get_progress'
+
 
   resources :home
 

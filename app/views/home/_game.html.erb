@@ -1,0 +1,304 @@
+<script src="/phaser/phaser.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<div id="phaser-example">
+</div>
+
+    <script type="text/javascript">
+
+    window.onload = function() {
+
+      //var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'fdsa', { preload: preload, create: create, update: update, render: render });
+
+var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update:update });
+
+var ship;
+var ship2;
+var border;
+var border2;
+var gentle_border;
+var gentle_border2;
+var countdown;
+var countdown_finished;
+var emiter;
+var player1_wins;
+var player2_wins;
+var pad1;
+var pad2;
+var text;
+
+
+var shakeWorld = 0;
+var shakeWorldMax = 20;
+var shakeWorldTime = 0;
+var shakeWorldTimeMax = 40;
+
+
+WebFontConfig = {
+
+    //  'active' means all requested fonts have finished loading
+    //  We set a 1 second delay before calling 'createText'.
+    //  For some reason if we don't the browser cannot render the text the first time it's created.
+    active: function() { game.time.events.add(Phaser.Timer.SECOND, createText, this); },
+
+    //  The Google Fonts we want to load (specify as many as you like in the array)
+    google: {
+      families: ['Roboto']
+    }
+
+};
+
+function preload() {
+    game.load.image('car', '/phaser/caro.png');
+    game.load.image('player1', '/phaser/player1.png');
+    game.load.image('player2', '/phaser/player2.png');
+    game.load.image('particle', '/phaser/particle.png');
+    game.load.image('border', '/phaser/border.png');
+    game.load.image('gentle_border', '/phaser/gentle_border.png');
+    game.load.spritesheet('countdown', '/phaser/countdown.png', 128, 128, 3);
+    game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
+}
+
+function create() {
+    //Physics init
+    game.physics.startSystem(Phaser.Physics.P2JS);
+    game.physics.p2.setImpactEvents(true);
+    game.physics.p2.restitution = 0.8;
+    var player1CollisionGroup = game.physics.p2.createCollisionGroup();
+    var player2CollisionGroup = game.physics.p2.createCollisionGroup();
+    var borderCollisionGroup = game.physics.p2.createCollisionGroup();
+    var gentle_borderCollisionGroup = game.physics.p2.createCollisionGroup();
+    game.physics.p2.updateBoundsCollisionGroup();
+
+    //Sprites
+    ship = game.add.sprite(100, game.world.height/2, 'player1');
+    ship2 = game.add.sprite(game.world.width-100, game.world.height/2, 'player2');
+    border = game.add.sprite(3, game.world.height/2, 'border');
+    border.is_border = true;
+    border2 = game.add.sprite(game.world.width - 3, game.world.height/2, 'border');
+    border2.is_border = true;
+
+    gentle_border = game.add.sprite(game.world.width/2, 5, 'gentle_border');
+    gentle_border2 = game.add.sprite(game.world.width/2, game.world.height-5, 'gentle_border');
+
+    countdown = game.add.sprite(game.world.width/2-128/2, game.world.height/2-128/2, 'countdown');
+    var anim = countdown.animations.add('countdown');
+    countdown.play('countdown',3,false);
+    anim.onComplete.add(countdownFinished, this);
+    countdown_finished=false;
+
+    //Particles
+    emitter = game.add.emitter(0,0, 100);
+    emitter.makeParticles('particle');
+    emitter.gravity = 0;
+
+    //Physics
+    game.physics.p2.enable(ship,false);
+    game.physics.p2.enable(ship2,false);
+    game.physics.p2.enable(border,false);
+    game.physics.p2.enable(border2,false);
+    game.physics.p2.enable(gentle_border,false);
+    game.physics.p2.enable(gentle_border2,false);
+
+    ship.body.mass = 0.25;
+    ship2.body.mass = 0.25;
+    border.body.mass = 0.1;
+    border2.body.mass = 0.1;
+    gentle_border.body.mass = 0.1;
+    gentle_border2.body.mass = 0.1;
+    gentle_border.body.kinematic=true;
+    gentle_border2.body.kinematic=true;
+
+    ship.body.angle = 90;
+    ship2.body.angle = -90;
+
+    ship.body.setCollisionGroup(player1CollisionGroup);
+    ship2.body.setCollisionGroup(player2CollisionGroup);
+    border.body.setCollisionGroup(borderCollisionGroup);
+    border2.body.setCollisionGroup(borderCollisionGroup);
+    gentle_border.body.setCollisionGroup(gentle_borderCollisionGroup);
+    gentle_border2.body.setCollisionGroup(gentle_borderCollisionGroup);
+
+    ship.body.collides([player1CollisionGroup,player2CollisionGroup,borderCollisionGroup,gentle_borderCollisionGroup],myOnCollide,this);
+    ship2.body.collides([player1CollisionGroup,player2CollisionGroup,borderCollisionGroup,gentle_borderCollisionGroup],myOnCollide,this);
+    border.body.collides([player1CollisionGroup,player2CollisionGroup,borderCollisionGroup,gentle_borderCollisionGroup],myOnCollide,this);
+    border2.body.collides([player1CollisionGroup,player2CollisionGroup,borderCollisionGroup,gentle_borderCollisionGroup],myOnCollide,this);
+    gentle_border.body.collides([player1CollisionGroup,player2CollisionGroup,borderCollisionGroup,gentle_borderCollisionGroup],myOnCollide,this);
+    gentle_border2.body.collides([player1CollisionGroup,player2CollisionGroup,borderCollisionGroup,gentle_borderCollisionGroup],myOnCollide,this);
+
+
+    //Inputs
+    game.input.gamepad.start();
+    cursors = game.input.keyboard.createCursorKeys();
+    key_w = game.input.keyboard.addKey(Phaser.Keyboard.W);
+    key_a = game.input.keyboard.addKey(Phaser.Keyboard.A);
+    key_s = game.input.keyboard.addKey(Phaser.Keyboard.S);
+    key_d = game.input.keyboard.addKey(Phaser.Keyboard.D);
+    pad1 = game.input.gamepad.pad1;
+    pad2 = game.input.gamepad.pad2;
+
+    //Misc
+    game.player1_wins=0;
+    game.player2_wins=0;
+    game.stage.backgroundColor = '#303F9F'
+
+    $.get("/javascript_api/get_progress",{"user_id":2,"course_id":6},
+            function(data)
+            {
+              game.player1_wins=data["player1_wins"]
+              game.player2_wins=data["player2_wins"]
+            })
+};
+
+function createText() {
+
+    text = game.add.text(game.world.centerX, 100, game.player1_wins+" - "+game.player2_wins);
+    text.anchor.setTo(0.5);
+
+    text.font = 'Revalia';
+    text.fontSize = 60;
+
+    //  x0, y0 - x1, y1
+    grd = text.context.createLinearGradient(0, 0, 0, text.canvas.height);
+    grd.addColorStop(0, '#C5CAE9');
+    grd.addColorStop(1, '#C5CAE9');
+    text.fill = grd;
+
+    text.align = 'center';
+    //text.stroke = '#000000';
+    //text.strokeThickness = 2;
+    //text.setShadow(5, 5, 'rgba(0,0,0,0.5)', 5);
+
+    text.inputEnabled = true;
+    text.input.enableDrag();
+
+    text.events.onInputOver.add(over, this);
+    text.events.onInputOut.add(out, this);
+
+}
+
+function out() {
+
+    text.fill = grd;
+
+}
+
+function over() {
+
+    text.fill = '#ff00ff';
+
+}
+
+function countdownFinished() {
+
+    ship.body.reset(100,game.world.height/2);
+    ship.body.angle = 90;
+    ship2.body.reset(game.world.width-100,game.world.height/2);
+    ship2.body.angle = -90;
+    border.body.reset(3, game.world.height/2);
+    border.body.angle = 0;
+    border2.body.reset(game.world.width - 3, game.world.height/2);
+    border2.body.angle = 0;
+    countdown_finished=true;
+    countdown.visible=false;
+}
+
+function checkOverlap(spriteA, spriteB) {
+  var boundsA = spriteA.getBounds();
+  var boundsB = spriteB.getBounds();
+  return Phaser.Rectangle.intersection(boundsA, boundsB);
+}
+
+function myOnCollide(body1, body2) {
+
+  if(body1.sprite.is_border)
+  {
+    if(countdown_finished==true)
+    {
+      if(body2.sprite == ship)
+        game.player2_wins+=1;
+      if(body2.sprite == ship2)
+        game.player1_wins+=1;
+      text.text=game.player1_wins+" - "+game.player2_wins;
+
+      $.post("/javascript_api/save_progress",{progress:{"player1_wins":game.player1_wins,"player2_wins":game.player2_wins},
+                                                        "user_id":2,"course_id":6},
+              function(data)
+              {
+                console.log(data)
+              })
+
+    }
+    countdown.visible=true;
+    countdown.play('countdown', 5, false);
+    countdown_finished=false;
+  }
+
+    temp_rect = checkOverlap(body1.sprite, body2.sprite);
+    if (temp_rect)
+    {
+      emitter.x=temp_rect.x+temp_rect.width/2;
+      emitter.y=temp_rect.y+temp_rect.height/2;
+
+      velocity_body1 = Math.sqrt(Math.pow(body1.velocity.x,2)+Math.pow(body1.velocity.y,2));
+      velocity_body2 = Math.sqrt(Math.pow(body2.velocity.x,2)+Math.pow(body2.velocity.y,2));
+      impact_magnitude = velocity_body1+velocity_body2;
+      emitter.start(true, impact_magnitude, null, impact_magnitude/100);
+
+      shakeWorldTime = impact_magnitude/shakeWorldTimeMax;
+      shakeWorld = impact_magnitude/shakeWorldMax;
+
+    }
+}
+
+function update() {
+
+    if(countdown_finished==true)
+    {
+
+    if (key_a.isDown || pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) < -0.1)
+      ship.body.rotateLeft(100);
+    else if (key_d.isDown || pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) > 0.1)
+      ship.body.rotateRight(100);
+    else
+      ship.body.setZeroRotation();
+
+    if (key_w.isDown || pad1.isDown(Phaser.Gamepad.XBOX360_A))
+      ship.body.thrust(200);
+    //if (key_s.isDown || pad1.isDown(Phaser.Gamepad.XBOX360_B))
+    //  ship.body.reverse(200);
+
+
+
+    if (cursors.left.isDown || pad2.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) < -0.1)
+      ship2.body.rotateLeft(100);
+    else if (cursors.right.isDown || pad2.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) > 0.1)
+      ship2.body.rotateRight(100);
+    else
+      ship2.body.setZeroRotation();
+
+    if (cursors.up.isDown || pad2.isDown(Phaser.Gamepad.XBOX360_A))
+      ship2.body.thrust(200);
+    //if (cursors.down.isDown || pad2.isDown(Phaser.Gamepad.XBOX360_B))
+    //  ship2.body.reverse(200);
+
+    }
+
+
+
+  if (shakeWorldTime > 0) {
+    var magnitude = ( shakeWorldTime / shakeWorldTimeMax ) * shakeWorld;
+    var rand1 = game.rnd.integerInRange(-magnitude,magnitude);
+    var rand2 = game.rnd.integerInRange(-magnitude,magnitude);
+    game.world.setBounds(rand1, rand2, game.width + rand1, game.height + rand2);
+    shakeWorldTime--;
+    if (shakeWorldTime == 0) {
+        game.world.setBounds(0, 0, game.width,game.height); // normalize after shake?
+    }
+  }
+
+};
+
+  };
+
+    </script>
+

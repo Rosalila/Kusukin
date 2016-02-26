@@ -1,0 +1,2 @@
+module JavascriptApiHelper
+end
