@@ -1,0 +1,260 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>hello phaser!</title>
+        <script src="phaser.min.js"></script>
+    </head>
+    <body>
+
+    <script type="text/javascript">
+
+    window.onload = function() {
+
+      var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'fdsa', { preload: preload, create: create, update: update, render: render });
+
+      function preload() {
+        game.load.tilemap('mario', '/phaser/map.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.image('tiles', '/phaser/tileset.png');
+        game.load.image('player', '/phaser/char.png');
+      }
+
+var pad1;
+      var map;
+      var tileset;
+      var layer;
+      var pA;
+      var pB;
+      var cursors;
+      var rectA;
+      var rectB;
+      var accA;
+      var accB;
+
+      function create() {
+
+        game.input.gamepad.start();
+        game.physics.startSystem(Phaser.Physics.P2JS);
+        game.stage.backgroundColor = '#787878';
+        map = game.add.tilemap('mario');
+        map.addTilesetImage('SuperMarioBros-World1-1', 'tiles');
+
+        //  14 = ? block
+        // map.setCollisionBetween(14, 15);
+
+        map.setCollisionBetween(0, 11);
+        map.setCollisionBetween(23, 33);
+    
+        layer = map.createLayer('World1');
+
+        //  Un-comment this on to see the collision tiles
+        // layer.debug = true;
+
+        layer.resizeWorld();
+
+        pA = game.add.sprite(16, 16, 'player');
+        pB = game.add.sprite(16*48, 32, 'player');
+
+        game.physics.enable(pA);
+        game.physics.enable(pB);
+
+        game.physics.arcade.gravity.y = 250;
+
+        pA.body.bounce.y = 0.2;
+        pA.body.bounce.x = 2;
+        pA.body.linearDamping = 1;
+        //pA.body.collideWorldBounds = true;
+pA.body.bounce.set(1);
+
+        pB.body.bounce.y = 0.2;
+        pB.body.linearDamping = 1;
+        pB.body.collideWorldBounds = true;
+pB.body.bounce.set(1);
+pA.body.bounce.setTo(1, 1);
+
+//        game.camera.follow(p);
+
+        cursors = game.input.keyboard.createCursorKeys();
+
+        rectA = new Phaser.Rectangle(0, 0, 18, 18);
+        rectB = new Phaser.Rectangle(0, 0, 18, 18);
+
+
+pad1 = game.input.gamepad.pad1;
+
+
+        accA=0;
+        accB=0;
+      }
+
+
+
+      function update() {
+        game.physics.arcade.collide(pA, layer);
+        game.physics.arcade.collide(pB, layer);
+        game.physics.arcade.collide(pA, pB);
+
+        pA.body.velocity.x = 0;
+
+        if (game.input.keyboard.isDown(Phaser.Keyboard.W)
+            || pad1.isDown(Phaser.Gamepad.XBOX360_DPAD_UP)
+            || pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_Y) < -0.1)
+        {
+          if (pA.body.onFloor())
+          {
+              pA.body.velocity.y = -200;
+          }
+        }
+
+
+        if (game.input.keyboard.isDown(Phaser.Keyboard.Q)
+            || pad1.axis(Phaser.Gamepad.XBOX360_STICK_RIGHT_X) < -0.1)
+        {
+          if(accA==0)
+            accA = -500;
+        }
+        if (game.input.keyboard.isDown(Phaser.Keyboard.A)
+						|| pad1.isDown(Phaser.Gamepad.XBOX360_DPAD_LEFT)
+            || pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) < -0.1)
+        {
+          pA.body.velocity.x = -150;
+        }
+        else if (game.input.keyboard.isDown(Phaser.Keyboard.D)
+						|| pad1.isDown(Phaser.Gamepad.XBOX360_DPAD_LEFT)
+            || pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) > 0.1)
+        {
+          pA.body.velocity.x = 150;
+        }
+        else if (game.input.keyboard.isDown(Phaser.Keyboard.E)
+            || pad1.axis(Phaser.Gamepad.XBOX360_STICK_RIGHT_X) > 0.1)
+        {
+          if(accA==0)
+            accA = 500;
+        }
+
+        pA.body.velocity.x+=accA;
+
+        if(accA<0)
+        {
+          accA+=10;
+          if(accA>=0)
+            accA=0;
+        }
+        if(accA>0)
+        {
+          accA-=10;
+          if(accA<=0)
+            accA=0;
+        }
+
+
+        pB.body.velocity.x = 0;
+
+        if (game.input.keyboard.isDown(Phaser.Keyboard.I))
+        {
+          if (pB.body.onFloor())
+          {
+              pB.body.velocity.y = -200;
+          }
+        }
+
+        if (game.input.keyboard.isDown(Phaser.Keyboard.U))
+        {
+          if(accB==0)
+            accB = -500;
+        }
+        if (game.input.keyboard.isDown(Phaser.Keyboard.J))
+        {
+          pB.body.velocity.x = -150;
+        }
+        else if (game.input.keyboard.isDown(Phaser.Keyboard.L))
+        {
+          pB.body.velocity.x = 150;
+        }
+        else if (game.input.keyboard.isDown(Phaser.Keyboard.O))
+        {
+          if(accB==0)
+            accB = 500;
+        }
+
+        pB.body.velocity.x+=accB;
+
+        if(accB<0)
+        {
+          accB+=10;
+          if(accB>=0)
+            accB=0;
+        }
+        if(accB>0)
+        {
+          accB-=10;
+          if(accB<=0)
+            accB=0;
+        }
+
+
+        rectA.x = pA.x-1;
+        rectA.y = pA.y-1;
+
+        rectB.x = pB.x-1;
+        rectB.y = pB.y-1;
+
+console.log(Math.abs(-10));
+
+if(false)
+        if(Phaser.Rectangle.intersection(rectA, rectB).width>0)
+        {
+/*
+            var accAux=accA;
+            accA=accB;
+            accB=accAux;
+var pAux = pA.body.velocity.x;
+pA.body.velocity.x = pB.body.velocity.x;
+pB.body.velocity.x = pAux;
+console.log(pA.body.velocity.x);
+console.log(pB.body.velocity.x);
+console.log(accA);
+console.log(accB);
+//pA.body.velocity.x = 0;
+//pB.body.velocity.x = 0;
+if(accA==0 || accB==0)
+          if(rectA.x<rectB.x)
+          {
+            //pA.x-=20;
+            //pB.x+=20;
+//pA.body.velocity.x = -200;
+//pB.body.velocity.x = 200;
+          }else
+          {
+//pA.body.velocity.x = 200;
+//pB.body.velocity.x = -200;
+            //pA.x+=20;
+            //pB.x-=20;
+          }
+*/
+        }
+
+        if(pA.x<16 || pB.x<16 || pA.x>16*48 || pB.x>16*48)
+        {
+          pA.x=16;
+          pA.y=16;
+          pB.x=16*48;
+          pB.y=32;
+          accA=0;
+          accB=0;
+        }
+
+      }
+
+      function render() {
+        game.debug.geom(rectA, 'rgba(52,152,219,255)');
+        game.debug.geom(rectB, 'rgba(231,76,60,255)');
+        // game.debug.body(p);
+        // game.debug.bodyInfo(p, 16, 320);
+      }
+  };
+
+    </script>
+
+    </body>
+</html>
