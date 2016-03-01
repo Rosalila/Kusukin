@@ -1,0 +1,35 @@
+machine:
+  timezone:
+    America/Los_Angeles
+  ruby:
+    version:
+      2.2.6
+  hosts:
+    circlehost: 127.0.0.1
+  environment:
+    CIRCLE_ENV: test
+    DATABASE_URL: postgres://ubuntu:@127.0.0.1:5432/circle_test
+checkout:
+  post:
+    - git submodule sync
+    - git submodule update --init
+dependencies:
+  pre:
+    - gem uninstall bundler
+    - gem install bundler --pre
+  override:
+    - bundle install:
+        timeout: 180
+  cache_directories:
+    - "custom_1"
+    - "~/custom_2"
+database:
+  override:
+    - cp config/database.yml.ci config/database.yml
+    - bundle exec rake db:create db:schema:load
+test:
+  minitest_globs:
+    - test/**/*_test.rb
+notify:
+  webhooks:
+    - url: https://hooks.slack.com/services/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
