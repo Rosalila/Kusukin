@@ -19,9 +19,6 @@ dependencies:
   override:
     - bundle install:
         timeout: 180
-  cache_directories:
-    - "custom_1"
-    - "~/custom_2"
 database:
   override:
     - cp config/database.yml.ci config/database.yml
