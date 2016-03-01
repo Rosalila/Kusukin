@@ -15,7 +15,6 @@ checkout:
     - git submodule update --init
 dependencies:
   pre:
-    - gem uninstall bundler
     - gem install bundler --pre
   override:
     - bundle install:
