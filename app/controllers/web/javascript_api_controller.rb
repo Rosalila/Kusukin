@@ -1,4 +1,4 @@
-class JavascriptApiController < ApplicationController
+class Web::JavascriptApiController < ApplicationController
   protect_from_forgery with: :null_session
 
   def test
@@ -28,7 +28,7 @@ class JavascriptApiController < ApplicationController
       player1_wins=JSON.parse(ucd.json_data)["player1_wins"].to_i
       player2_wins=JSON.parse(ucd.json_data)["player2_wins"].to_i
     end
-    
+
     render json: {"player1_wins":player1_wins,"player2_wins":player2_wins}
   end
 end

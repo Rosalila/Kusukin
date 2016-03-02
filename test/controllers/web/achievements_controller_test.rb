@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class AchievementsControllerTest < ActionController::TestCase
+class Web::AchievementsControllerTest < ActionController::TestCase
   setup do
     @achievement = achievements(:one)
   end

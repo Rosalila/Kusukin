@@ -1,4 +1,4 @@
-class PathsController < ApplicationController
+class Web::PathsController < ApplicationController
   before_action :set_path, only: [:show, :edit, :update, :destroy]
 
   # GET /paths

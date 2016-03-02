@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class PathsControllerTest < ActionController::TestCase
+class Web::PathsControllerTest < ActionController::TestCase
   setup do
     @path = paths(:one)
   end

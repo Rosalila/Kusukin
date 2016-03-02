@@ -1,4 +1,4 @@
-class HomeworksController < ApplicationController
+class Web::HomeworksController < ApplicationController
   before_action :set_homework, only: [:show, :edit, :update, :destroy]
 
   # GET /homeworks

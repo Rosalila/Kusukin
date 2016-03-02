@@ -1,4 +1,4 @@
-class EnrollmentController < ApplicationController
+class Web::EnrollmentController < ApplicationController
   #before_action :set_enrollment, only: [:index, :show, :destroy]
 
   layout 'backend/dashboard'

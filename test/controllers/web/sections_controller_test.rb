@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class SectionsControllerTest < ActionController::TestCase
+class Web::SectionsControllerTest < ActionController::TestCase
   setup do
     @course = courses(:one)
 

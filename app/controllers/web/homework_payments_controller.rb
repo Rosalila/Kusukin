@@ -1,4 +1,4 @@
-class HomeworkPaymentsController < ApplicationController
+class Web::HomeworkPaymentsController < ApplicationController
   before_action :set_homework_payment, only: [:show, :edit, :update, :destroy]
 
   # GET /homework_payments
