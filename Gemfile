@@ -24,6 +24,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'dragonfly'
 
+gem 'rubocop', '~> 0.37.2', require: false
 
 group :development, :test do
   gem 'byebug'
