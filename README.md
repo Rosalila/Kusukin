@@ -49,6 +49,10 @@ Do not forget to run Docker service without sudo after installation and before r
 * Restart the docker daemon (if your Linux distro uses systemd)
 ```sudo systemctl restart docker```
 
+If you want to install another gems, just add them to Gemfile and run 
+```docker-compose build```
+It will rebuild your container with rails application and install new gems into.
+
 ### Support
 
 Please file issues [click here] at Github. 
