@@ -1,7 +1,7 @@
-class BackendController < ApplicationController
+class Web::BackendController < ApplicationController
 
   layout 'backend/dashboard'
-  
+
   def courses
   end
 

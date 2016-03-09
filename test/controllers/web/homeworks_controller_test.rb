@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class HomeworksControllerTest < ActionController::TestCase
+class Web::HomeworksControllerTest < ActionController::TestCase
   setup do
     @homework = homeworks(:one)
   end

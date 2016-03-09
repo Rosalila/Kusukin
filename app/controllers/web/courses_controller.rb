@@ -1,4 +1,4 @@
-class CoursesController < ApplicationController
+class Web::CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy, :join_enrollment]
 
   layout 'backend/dashboard'

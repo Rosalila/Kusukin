@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class HomeworkPaymentsControllerTest < ActionController::TestCase
+class Web::HomeworkPaymentsControllerTest < ActionController::TestCase
   setup do
     @homework_payment = homework_payments(:one)
   end
