@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :users, :controllers => { :omniauth_callbacks => "web/callbacks", :registrations => "web/registrations" }
+
   scope module: :web do
     root 'home#index'
     post 'javascript_api/test' => 'javascript_api#test'
@@ -23,8 +25,6 @@ Rails.application.routes.draw do
     resources :categories
 
     resource :enrollment
-
-    devise_for :users, :controllers => { :omniauth_callbacks => "callbacks", :registrations => "registrations" }
 
     get '/backend/courses', to: 'backend#courses', as: 'backend_courses'
     get '/backend/balance', to: 'backend#balance', as: 'backend_balance'
