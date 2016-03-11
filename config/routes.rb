@@ -1,5 +1,17 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => { :omniauth_callbacks => "web/callbacks", :registrations => "web/registrations" }
+  devise_for :users, :controllers => { omniauth_callbacks: "web/callbacks", registrations: "web/registrations" }
+
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resource :progress do
+        member do
+          post :save
+          post :status
+          get :get
+        end
+      end
+    end
+  end
 
   scope module: :web do
     root 'home#index'
