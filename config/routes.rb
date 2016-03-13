@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => { omniauth_callbacks: "web/callbacks", registrations: "web/registrations" }
+  devise_for :users, :controllers => { omniauth_callbacks: 'web/callbacks', registrations: 'web/registrations' }
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
+      devise_for :users, skip: [ :registrations, :passwords, :confirmations ]
+
       resource :progress do
         member do
           post :save
@@ -10,15 +12,12 @@ Rails.application.routes.draw do
           get :get
         end
       end
+
     end
   end
 
   scope module: :web do
     root 'home#index'
-    post 'javascript_api/test' => 'javascript_api#test'
-
-    post 'javascript_api/save_progress' => 'javascript_api#save_progress'
-    get 'javascript_api/get_progress' => 'javascript_api#get_progress'
 
     resources :home
     resources :homework_payments

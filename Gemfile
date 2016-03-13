@@ -23,6 +23,8 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'dragonfly'
+gem 'simple_token_authentication'
+gem 'cancan'
 
 gem 'rubocop', '~> 0.37.2', require: false
 
