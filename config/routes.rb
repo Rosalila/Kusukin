@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      devise_for :users, skip: [ :registrations, :passwords, :confirmations ]
+      devise_for :users, skip: [ :registrations ]
 
       resource :progress do
         member do
