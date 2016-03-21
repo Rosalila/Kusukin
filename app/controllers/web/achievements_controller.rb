@@ -69,6 +69,6 @@ class Web::AchievementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def achievement_params
-      params.require(:achievement).permit(:title, :user_id, :course_id)
+      params.require(:achievement).permit(:name, :description, :icon, :course_id)
     end
 end

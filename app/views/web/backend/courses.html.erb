@@ -54,64 +54,75 @@
           </a>
         </div>
       </div><!-- ./col -->
-    </div><!-- /.row -->  
+    </div><!-- /.row -->
 
     <!-- Sections as boxes
       En esta parte se tiene se van a cargar todas las secciones por curso
-     -->      
+     -->
 
     <% @course = Course.find_by_id(params[:course_id]) %>
     <% @course = Course.new if @course == nil %>
     <%= render 'course' %>
 
-<% if params[:course_id]!=nil %>
-    <h4 id="Sections" class="page-header">
-      Sections
-      <small>This sections is for each selected course</small>
-    </h4>
+    <% if params[:course_id]!=nil %>
+      <h4 id="Sections" class="page-header">
+        Sections
+        <small>This sections is for each selected course</small>
+      </h4>
 
-    <!-- Solid boxes -->
-    <div class="row">
-      <% @section_number = 1 %>
-      <% @course.sections.order('created_at ASC').each do |s| %>
-      <div class="col-md-4">
-        <!-- Default box -->
-        <div class="box box-solid box-primary">
-          <div class="box-header">
-            <h3 class="box-title">Section <%=@section_number%></h3>
-            <div class="box-tools pull-right">
-              <button class="btn btn-default btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
-              <button class="btn btn-default btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+      <!-- Solid boxes -->
+      <div class="row">
+        <% @section_number = 1 %>
+        <% @course.sections.order('created_at ASC').each do |s| %>
+        <div class="col-md-4">
+          <!-- Default box -->
+          <div class="box box-solid box-primary">
+            <div class="box-header">
+              <h3 class="box-title">Section <%=@section_number%></h3>
+              <div class="box-tools pull-right">
+                <button class="btn btn-default btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                <button class="btn btn-default btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
             </div>
-          </div>
 
-          <div class="box-body">
-            <% @section = s %>
-            <%= render 'section' %>
-          </div><!-- /.box-body -->
-        </div><!-- /.box -->
-      </div><!-- /.col -->
-      <% @section_number+=1 %>
-      <% end %>
-      <div class="col-md-4">
-        <!-- Default box -->
-        <div class="box box-solid box-primary">
-          <div class="box-header">
-            <h3 class="box-title">New section</h3>
-            <div class="box-tools pull-right">
-              <button class="btn btn-default btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
-              <button class="btn btn-default btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+            <div class="box-body">
+              <% @section = s %>
+              <%= render 'section' %>
+            </div><!-- /.box-body -->
+          </div><!-- /.box -->
+        </div><!-- /.col -->
+        <% @section_number+=1 %>
+        <% end %>
+        <div class="col-md-4">
+          <!-- Default box -->
+          <div class="box box-solid box-primary">
+            <div class="box-header">
+              <h3 class="box-title">New section</h3>
+              <div class="box-tools pull-right">
+                <button class="btn btn-default btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                <button class="btn btn-default btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
             </div>
-          </div>
 
-          <div class="box-body">
-            <% @section = Section.new %>
-            <%= render 'section' %>
-          </div><!-- /.box-body -->
-        </div><!-- /.box -->
-      </div><!-- /.col -->
-    </div>
-<% end %>
-<%= render 'game' %>
+            <div class="box-body">
+              <% @section = Section.new %>
+              <%= render 'section' %>
+            </div><!-- /.box-body -->
+          </div><!-- /.box -->
+        </div><!-- /.col -->
+      </div>
+      <h4 id="Achievements" class="page-header">
+        Achievements
+        <small>Create and edit achievements</small>
+      </h4>
+      <div class="row">
+        <% @course.achievements.each do |achievement| %>
+          <% @achievement = achievement %>
+          <%= render 'achievement' %>
+        <% end %>
+        <% @achievement = Achievement.new %>
+        <%= render 'achievement' %>
+      </div>
+    <% end %>
   </section><!-- /.content -->
-      </div><!-- /.content-wrapper -->
+</div><!-- /.content-wrapper -->
