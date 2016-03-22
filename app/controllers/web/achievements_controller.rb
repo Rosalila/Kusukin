@@ -42,8 +42,8 @@ class Web::AchievementsController < ApplicationController
   def update
     respond_to do |format|
       if @achievement.update(achievement_params)
-        format.html { redirect_to @achievement, notice: 'Achievement was successfully updated.' }
-        format.json { render :show, status: :ok, location: @achievement }
+        redirect_to controller: 'backend', action: 'courses' , course_id: @achievement.course.id
+        return
       else
         format.html { render :edit }
         format.json { render json: @achievement.errors, status: :unprocessable_entity }

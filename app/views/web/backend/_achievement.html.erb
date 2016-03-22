@@ -9,6 +9,11 @@
       </div>
     </div>
       <div class="box-body">
+
+        <%if @achievement.icon_id != nil %>
+          <%= image_tag attachment_url(@achievement, :icon, :fill, 300, 300, format: "png") %>
+        <%end%>
+
         <%= form_for(@achievement) do |f| %>
           <% if @achievement.errors.any? %>
             <div id="error_explanation">
@@ -32,10 +37,14 @@
             <textarea name="achievement[description]" class="form-control" rows="3" placeholder="Enter ..."><%= @achievement.description %></textarea>
           </div>
 
+<!--
           <div class="form-group">
             <label>Icon</label>
             <input required="required" type="file" name="achievement[icon]"/>
           </div>
+-->
+
+          <%= f.attachment_field :icon  %>
 
           <input type="hidden" name="achievement[course_id]" class="form-control" rows="3" placeholder="Enter ..." value="<%= params[:course_id] %>"/>
 
