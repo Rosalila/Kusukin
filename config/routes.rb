@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :paths
     resources :achievements
     resources :sections
+    resources :enrollments
 
     resources :courses do
       collection do

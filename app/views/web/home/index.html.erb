@@ -1,10 +1,10 @@
  <section id="portfolio">
-         
+
             <div class="section-title text-center wow fadeInDown">
-                <h2>Courses</h2>    
+                <h2>Courses</h2>
                 <!--<p>Aprienda de una forma diferente!</p-->
             </div>
-            
+
             <nav class="project-filter clearfix text-center wow fadeInLeft"  data-wow-delay="0.5s">
                 <ul class="list-inline">
                   <% @categories.each do |category| %>
@@ -34,7 +34,7 @@
               <% end %>
             </div> <!-- end #projects -->
         </section>
-    
+
 <% count = 1 %>
 <% @courses.each do |course| %>
 
@@ -42,22 +42,22 @@
 		  <div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<section id="services">
-					<div class="container">	
-						<div class="row">					
+					<div class="container">
+						<div class="row">
 							<div class="col-md-9 col-sm-12">
-								<div class="clearfix">	
+								<div class="clearfix">
                   <p>Created At: <%= course.created_at.strftime('%Y/%m/%d') %></p>
 								</div>
 							</div>
-						</div>					
-						<div class="row">					
+						</div>
+						<div class="row">
 							<div class="col-md-9 col-sm-12">
-								<div class="subtitle text-center">	
-                  <h3><%= course.name %></h3>								
+								<div class="subtitle text-center">
+                  <h3><%= course.name %></h3>
 								</div>
 							</div>
-						</div>							
-						<div class="row">							
+						</div>
+						<div class="row">
 							<div class="col-md-4 col-sm-8">
 								<div class="section-title text-left fadeInDown">
 									<div class="media">
@@ -69,20 +69,20 @@
 								<div class="subtitle" class="fadeInDown">
 											<div class="text-left">
                         <p><%= course.description %></p>
-											</div>										
-											<div class="text-center">  
-                        <% if current_user.nil? %>
-                          <%= link_to "Enrollment", "/#login", class: "btn btn-blue",  
-                                      onClick:"$('#modal-#{count}').hide();" %>  
+											</div>
+											<div class="text-center">
+                        <% unless current_user.nil? %>
+                          <%= link_to "Enrollment", "/#login", class: "btn btn-blue",
+                                      onClick:"$('#modal-#{count}').hide();" %>
                         <% else %>
-                        <%= link_to "Enrollment", { controller: 'enrollment', action: 'new', id: course }, 
-                                    class: "btn btn-blue" %> 
-                        
+                        <%= link_to "Enrollment", { controller: 'enrollments', action: 'new', id: course.id },
+                                    class: "btn btn-blue" %>
+
                         <% end %>
                       </div>
 								</div>
 							</div>
-						</div>																			
+						</div>
 					</div> <!-- end .container -->
 				</section>
 			</div>
@@ -98,9 +98,9 @@
     <div class="container">
          <div class="row">
               <div class="section-title text-center wow fadeInUp">
-                  <h2>About Us</h2>    
+                  <h2>About Us</h2>
                   <p>Rosalila Studio.</p>
-               </div>                 
+               </div>
                <div class="about-us text-center wow fadeInDown">
                    <img src="/frontend/img/about.png" alt="About Us" class="img-responsive">
                 </div>
@@ -122,7 +122,7 @@
      <div class="col-xs-6 col-md-4">
        <div id="loginbox">
         <div class="section-title text-center wow fadeInDown">
-          <h2>Login</h2>    
+          <h2>Login</h2>
         </div>
           <%= form_for(:user, :url => session_path(:user)) do |f| %>
               <div class="form-group">
@@ -149,17 +149,17 @@
              <div class="form-group">
                  <div class="control">
                       <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
-                           Don't have an account! 
+                           Don't have an account!
                            <a href="#login" onClick="$('#loginbox').hide(); $('#signupbox').show()">
                            Sign Up Here </a>
                        </div>
                  </div>
-             </div>  
+             </div>
           <% end %>
       </div>
        <div id="signupbox" style="display:none;">
           <div class="section-title text-center wow fadeInDown">
-             <h2>Sign up</h2>    
+             <h2>Sign up</h2>
           </div>
            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
             <%= devise_error_messages! %>
@@ -167,13 +167,13 @@
              <div class="form-group">
                <%= f.label :name %><br />
                <%= f.text_field :name, autofocus: true, class: "form-control" %>
-             </div>     
-         
+             </div>
+
              <!--<div class="form-group">
               <%= f.label :image %><br />
               <%= f.file_field :image, class: "form-control" %>
              </div>-->
-         
+
              <div class="form-group">
                 <%= f.label :email %><br />
                 <%= f.email_field :email, autofocus: true, class: "form-control" %>
@@ -194,24 +194,24 @@
 
            <div class="form-group">
              <%= f.submit "Sign up", class: "btn btn-info" %>
-             <span style="margin-left:8px;margin-right:8px">or</span>  
+             <span style="margin-left:8px;margin-right:8px">or</span>
              <%#= f.submit "Sign Up with Facebook", user_omniauth_authorize_path(:facebook), class: "btn btn-primary" %>
              <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook), class: "btn btn-primary" %>
            </div>
-         
+
            <div class="form-group">
                  <div class="control">
                       <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
-                           Already have an account! 
+                           Already have an account!
                            <a href="#login" onClick="$('#signupbox').hide(); $('#loginbox').show()">
                            Login Here </a>
                        </div>
                  </div>
-           </div>   
+           </div>
         <% end %>
        </div>
     </div>
-     <div class="col-xs-6 col-md-4"></div>  
+     <div class="col-xs-6 col-md-4"></div>
   </div>
 </section>
 
