@@ -28,7 +28,7 @@ class Web::AchievementsController < ApplicationController
 
     respond_to do |format|
       if @achievement.save
-        format.html { redirect_to @achievement, notice: 'Achievement was successfully created.' }
+        format.html { redirect_to controller: 'backend', action: 'courses' , course_id: @achievement.course_id, notice: 'Achievement was successfully created.' }
         format.json { render :show, status: :created, location: @achievement }
       else
         format.html { render :new }
@@ -42,8 +42,8 @@ class Web::AchievementsController < ApplicationController
   def update
     respond_to do |format|
       if @achievement.update(achievement_params)
-        redirect_to controller: 'backend', action: 'courses' , course_id: @achievement.course_id
-        return
+        format.html { redirect_to controller: 'backend', action: 'courses', course_id: @achievement.course_id, notice: 'Achievement was successfully updated.' }
+        format.json { render :show, status: :ok, location: @achievement }
       else
         format.html { render :edit }
         format.json { render json: @achievement.errors, status: :unprocessable_entity }
@@ -56,7 +56,7 @@ class Web::AchievementsController < ApplicationController
   def destroy
     @achievement.destroy
     respond_to do |format|
-      format.html { redirect_to achievements_url, notice: 'Achievement was successfully destroyed.' }
+      format.html { redirect_to controller: 'backend', action: 'courses' , course_id: @achievement.course_id, notice: 'Achievement was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
