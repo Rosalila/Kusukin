@@ -21,7 +21,7 @@ class Web::AchievementsControllerTest < ActionController::TestCase
       post :create, achievement: { course_id: @achievement.course_id, name: @achievement.name }
     end
 
-    assert_redirected_to achievement_path(assigns(:achievement))
+    assert_redirected_to controller: 'backend', action: 'courses' , course_id: @achievement.course_id, notice: 'Achievement was successfully created.'
   end
 
   test "should show achievement" do
@@ -36,7 +36,7 @@ class Web::AchievementsControllerTest < ActionController::TestCase
 
   test "should update achievement" do
     patch :update, id: @achievement, achievement: { course_id: @achievement.course_id, name: @achievement.name }
-    assert_redirected_to achievement_path(assigns(:achievement))
+    assert_redirected_to controller: 'backend', action: 'courses' , course_id: @achievement.course_id, notice: 'Achievement was successfully updated.'
   end
 
   test "should destroy achievement" do
@@ -44,6 +44,6 @@ class Web::AchievementsControllerTest < ActionController::TestCase
       delete :destroy, id: @achievement
     end
 
-    assert_redirected_to achievements_path
+    assert_redirected_to controller: 'backend', action: 'courses' , course_id: @achievement.course_id, notice: 'Achievement was successfully destroyed.'
   end
 end

@@ -28,7 +28,7 @@ class Web::AchievementsController < ApplicationController
 
     respond_to do |format|
       if @achievement.save
-        format.html { redirect_to @achievement, notice: 'Achievement was successfully created.' }
+        format.html { redirect_to controller: 'backend', action: 'courses' , course_id: @achievement.course_id, notice: 'Achievement was successfully created.' }
         format.json { render :show, status: :created, location: @achievement }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class Web::AchievementsController < ApplicationController
   def update
     respond_to do |format|
       if @achievement.update(achievement_params)
-        format.html { redirect_to @achievement, notice: 'Achievement was successfully updated.' }
+        format.html { redirect_to controller: 'backend', action: 'courses', course_id: @achievement.course_id, notice: 'Achievement was successfully updated.' }
         format.json { render :show, status: :ok, location: @achievement }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class Web::AchievementsController < ApplicationController
   def destroy
     @achievement.destroy
     respond_to do |format|
-      format.html { redirect_to achievements_url, notice: 'Achievement was successfully destroyed.' }
+      format.html { redirect_to controller: 'backend', action: 'courses' , course_id: @achievement.course_id, notice: 'Achievement was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +69,6 @@ class Web::AchievementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def achievement_params
-      params.require(:achievement).permit(:title, :user_id, :course_id)
+      params.require(:achievement).permit(:name, :description, :icon, :course_id)
     end
 end
