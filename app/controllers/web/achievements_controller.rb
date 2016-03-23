@@ -42,7 +42,7 @@ class Web::AchievementsController < ApplicationController
   def update
     respond_to do |format|
       if @achievement.update(achievement_params)
-        redirect_to controller: 'backend', action: 'courses' , course_id: @achievement.course.id
+        redirect_to controller: 'backend', action: 'courses' , course_id: @achievement.course_id
         return
       else
         format.html { render :edit }

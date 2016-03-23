@@ -35,8 +35,8 @@ class Web::AchievementsControllerTest < ActionController::TestCase
   end
 
   test "should update achievement" do
-    patch :update, id: @achievement, achievement: { course_id: @achievement.course_id, name: @achievement.name }
-    assert_redirected_to achievement_path(assigns(:achievement))
+    patch :update, id: @achievement, achievement: { name: @achievement.name }
+    assert_redirected_to controller: 'backend', action: 'courses' , course_id: @achievement.course_id
   end
 
   test "should destroy achievement" do
