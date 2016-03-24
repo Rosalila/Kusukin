@@ -6,8 +6,6 @@ class Web::BackendController < ApplicationController
     @courses = Course.where(user_id: current_user.id).order('created_at ASC')
     if params[:course_id]
       @course = Course.find_by_id(params[:course_id])
-    else
-      @course = Course.new
     end
   end
 

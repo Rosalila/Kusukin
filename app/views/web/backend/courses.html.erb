@@ -60,9 +60,10 @@
       En esta parte se tiene se van a cargar todas las secciones por curso
      -->
 
-    <%= render 'course' %>
+    <% if @course %>
 
-    <% unless @course %>
+      <%= render 'course' %>
+
       <h4 id="Sections" class="page-header">
         Sections
         <small>This sections is for each selected course</small>
@@ -121,6 +122,9 @@
         <% @achievement = Achievement.new %>
         <%= render 'achievement' %>
       </div>
+    <% else %>
+      <%= @course = Course.new %>
+      <%= render 'course' %>
     <% end %>
   </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
