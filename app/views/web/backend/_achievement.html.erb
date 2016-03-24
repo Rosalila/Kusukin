@@ -12,10 +12,6 @@
         </div>
       </div>
         <div class="box-body">
-        <%if @achievement.icon_id != nil %>
-          <%= image_tag attachment_url(@achievement, :icon, :fill, 300, 300, format: "png") %>
-        <%end%>
-
 
           <% if @achievement.errors.any? %>
             <div id="error_explanation">
@@ -26,6 +22,18 @@
                 <li><%= message %></li>
               <% end %>
               </ul>
+            </div>
+          <% end %>
+
+          <div class="form-group">
+            <%if @achievement.icon_id != nil %>
+              <%= image_tag attachment_url(@achievement, :icon, :fill, 300, 300, format: "png") %>
+            <%end%>
+          </div>
+
+          <% if @achievement.id %>
+            <div class="form-group">
+              <label>Id: <%=@achievement.id%></label>
             </div>
           <% end %>
 

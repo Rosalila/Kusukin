@@ -28,14 +28,6 @@ module App
       Devise::PasswordsController.layout "frontend/homepage"
     end
 
-# in config/application.rb
-config.action_dispatch.default_headers = {
-    'Access-Control-Allow-Origin' => '*',
-    'Access-Control-Allow-Methods' => 'POST, GET, PUT, DELETE, OPTIONS',
-    'Access-Control-Allow-Headers' => 'Origin, Content-Type, Accept, Authorization, Token',
-    'Access-Control-Max-Age' => "1728000"
-  }
-
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
   end

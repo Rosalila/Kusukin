@@ -11,8 +11,14 @@
     </div>
   <% end %>
 
+  <% if @course.id %>
+    <div class="form-group">
+      <label>Id: <%= @course.id %></label>
+    </div>
+  <% end %>
+
   <div class="form-group">
-    <label>Tile</label>
+    <label>Name</label>
     <input name="course[name]" type="text" class="form-control" placeholder="Enter ..." value="<%= @course.name %>"/>
   </div>
   <div class="form-group">
