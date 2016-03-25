@@ -75,10 +75,9 @@ class Web::JavascriptApiController < ApplicationController
   end
 
   def get_achievements
-    email = params[:email]
-    user = User.find_by_email(email)
+    user = User.find_by_email(params[:email])
     
-    if User.exists?(email: email)==false
+    if !user
       render json: {"status": "Error: User with the provided email does not exists"}
       return
     end
@@ -93,5 +92,34 @@ class Web::JavascriptApiController < ApplicationController
     end
 
     render json: {"achievements": achievements}
+  end
+
+  def get_course
+    course = Course.find_by_id(params[:course_id])
+
+    if !course
+      render json: {"status": "Error: Course does not exists"}
+      return
+    end
+
+    achievements=[]
+    course.achievements.each do |achievement|
+      achievements.push({id: achievement.id,
+                          name: achievement.name,
+                          description: achievement.description,
+                          icon: Refile.attachment_url(achievement, :icon, format: "png")
+                        })
+    end
+
+    sections=[]
+    course.sections.each do |section|
+      sections.push({id: section.id,
+                          name: section.title,
+                          video_url: section.videourl,
+                          content: section.content
+                        })
+    end
+
+    render json: {name: course.name, description: course.description, achievements: achievements, sections: sections}
   end
 end

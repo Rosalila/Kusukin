@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     post 'javascript_api/unlock_achievement' => 'javascript_api#unlock_achievement'
     get 'javascript_api/get_progress' => 'javascript_api#get_progress'
     get 'javascript_api/get_achievements' => 'javascript_api#get_achievements'
+    get 'javascript_api/get_course' => 'javascript_api#get_course'
 
     resources :home
     resources :homework_payments
