@@ -75,24 +75,21 @@ class Web::JavascriptApiController < ApplicationController
   end
 
   def get_achievements
-    user_id = params[:user_id]
-
-    if User.exists?(id: user_id)==false
-      render json: {"status": "Error: User does not exists"}
+    email = params[:email]
+    user = User.find_by_email(email)
+    
+    if User.exists?(email: email)==false
+      render json: {"status": "Error: User with the provided email does not exists"}
       return
     end
 
-    user_achievements = UserAchievement.where(:user_id=>user_id)
     achievements=[]
-    user_achievements.each do |user_achievement|
-      achievement = Achievement.find_by_id(user_achievement.achievement_id)
-      if achievement
-        achievements.push({id: achievement.id,
-                            name: achievement.name,
-                            description: achievement.description,
-                            icon: Refile.attachment_url(achievement, :icon, format: "png")
-                          })
-      end
+    user.achievements.each do |achievement|
+      achievements.push({id: achievement.id,
+                          name: achievement.name,
+                          description: achievement.description,
+                          icon: Refile.attachment_url(achievement, :icon, format: "png")
+                        })
     end
 
     render json: {"achievements": achievements}
