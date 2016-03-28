@@ -2,7 +2,7 @@ class Api::V1::SessionsController < Devise::SessionsController
   skip_before_filter :verify_signed_out_user, :only => [:destroy]
 
   def create
-    user = warden.authenticate!(params[:session])
+    user = warden.authenticate!(params[:user])
     sign_in(resource_name, user)
 
     current_user.authentication_token = nil
