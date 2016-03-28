@@ -13,6 +13,13 @@ Rails.application.routes.draw do
         end
       end
 
+      resource :courses do
+        member do
+          post :save
+          get :get
+        end
+      end
+
     end
   end
 
