@@ -1,2 +1,0 @@
-json.count_of_player1_wins @count_of_player1_wins
-json.count_of_player2_wins @count_of_player2_wins
