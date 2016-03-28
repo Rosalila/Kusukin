@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20160327094224) do
     t.datetime "updated_at",  null: false
     t.string   "name"
     t.text     "description"
-    t.string   "icon"
+    t.string   "icon_id"
   end
 
   add_index "achievements", ["course_id"], name: "index_achievements_on_course_id", using: :btree
