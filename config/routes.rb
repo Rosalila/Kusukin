@@ -8,7 +8,6 @@ Rails.application.routes.draw do
       resource :progress do
         member do
           post :save
-          post :status
           get :get
         end
       end
@@ -23,7 +22,7 @@ Rails.application.routes.draw do
       resource :achievements do
         member do
           post :unlock
-          post :get
+          post :index
         end
       end
 

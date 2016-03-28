@@ -27,17 +27,6 @@ class Api::V1::ProgressesController < Api::V1::ApplicationController
     render json: nil, status: :unprocessable_entity unless @ucd
   end
 
-  def status
-    ucd = UserCourseStorage.find_by(user_id: params[:user_id], course_id: params[:course_id])
-
-    if ucd
-      @count_of_player1_wins ||= JSON.parse(ucd.json_data)["player1_wins"].to_i
-      @count_of_player2_wins ||= JSON.parse(ucd.json_data)["player2_wins"].to_i
-    else
-      render json: nil, status: :unprocessable_entity unless @ucd
-    end
-  end
-
   def get
     @ucd = UserCourseStorage.find_by(course_id: params[:course_id])
 

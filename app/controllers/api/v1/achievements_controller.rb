@@ -6,11 +6,11 @@ class Api::V1::AchievementsController < Api::V1::ApplicationController
     achievement_id = params[:achievement_id]
 
     if User.exists?(id: user_id)==false
-      render json: {"status": "Error: User does not exists"}
+      render json: {"error": "User does not exists"}
       return
     end
     if Achievement.exists?(id: achievement_id)==false
-      render json: {"status": "Error: Achievement does not exists"}
+      render json: {"error": "Achievement does not exists"}
       return
     end
 
@@ -26,7 +26,7 @@ class Api::V1::AchievementsController < Api::V1::ApplicationController
     render json: {"status": "success"}
   end
 
-  def get
+  def index
     user = User.find_by_email(params[:email])
 
     if !user
@@ -39,7 +39,7 @@ class Api::V1::AchievementsController < Api::V1::ApplicationController
       achievements.push({id: achievement.id,
                           name: achievement.name,
                           description: achievement.description
-                          //icon: Refile.attachment_url(achievement, :icon, format: "png")
+                          #icon: Refile.attachment_url(achievement, :icon, format: "png")
                         })
     end
 
