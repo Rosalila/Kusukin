@@ -20,6 +20,13 @@ Rails.application.routes.draw do
         end
       end
 
+      resource :achievements do
+        member do
+          post :unlock
+          post :get
+        end
+      end
+
     end
   end
 

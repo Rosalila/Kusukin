@@ -2,21 +2,29 @@ class Api::V1::ProgressesController < Api::V1::ApplicationController
   protect_from_forgery with: :null_session
 
   def save
-    ucd = UserCourseStorage.find_by(user_id: params[:user_id], course_id: params[:course_id])
+    user_id = current_user.id
+    course_id = params[:course_id]
+    progress = params[:progress]
 
-    if ucd
-      ucd.json_data = params[:progress].to_json
-      ucd.save
-
-      render json: {"errors":[]}, handlers: [:jbuilder]
-    else
-      ucd = UserCourseStorage.new
-      ucd.user_id = params[:user_id]
-      ucd.course_id = params[:course_id]
-      ucd.json_data = { "player1_wins" => 0, "player2_wins" => 0 }.to_json
-
-      ucd.save
+    if User.exists?(id: user_id)==false
+      render json: {"status": "Error: User does not exists"}
+      return
     end
+    if Course.exists?(id: course_id)==false
+      render json: {"status": "Error: Course does not exists"}
+      return
+    end
+
+    @ucd=UserCourseStorage.where(:user_id=>user_id,:course_id=>course_id)[0]
+    if !@ucd
+      @ucd=UserCourseStorage.new
+      @ucd.user_id=user_id
+      @ucd.course_id=course_id
+    end
+    @ucd.json_data=progress.to_json
+    @ucd.save
+
+    render json: nil, status: :unprocessable_entity unless @ucd
   end
 
   def status
