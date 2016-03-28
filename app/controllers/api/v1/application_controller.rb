@@ -1,18 +1,17 @@
 class Api::V1::ApplicationController < ActionController::Base
-  protect_from_forgery with: :null_session, :if => Proc.new { |c| c.request.format == 'application/json' }
   respond_to :json
+  protect_from_forgery except: :sign_in
+  acts_as_token_authentication_handler_for User
 
-  before_filter :authenticate_user_from_token!
-  before_filter :authenticate_user!
+  before_filter do
+    resource = controller_name.singularize.to_sym
+    method = "#{resource}_params"
+    params[resource] &&= send(method) if respond_to?(method, true)
+  end
 
-  private
-
-  def authenticate_user_from_token!
-    user_email = params[:user_email].presence
-    user       = user_email && User.find_by_email(user_email)
-
-    if user && Devise.secure_compare(user.authentication_token, params[:user_token])
-      sign_in user, store: false
+  rescue_from CanCan::AccessDenied do |exception|
+    respond_to do |format|
+      format.json { render json: exception.to_json, status: :forbidden }
     end
   end
 end
