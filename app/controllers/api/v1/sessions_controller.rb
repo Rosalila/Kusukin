@@ -1,9 +1,15 @@
 class Api::V1::SessionsController < Devise::SessionsController
-  protect_from_forgery with: :null_session
+  skip_before_filter :verify_authenticity_token
 
   def create
-    self.resource = warden.authenticate!(auth_options)
-    sign_in(resource_name, resource)
+    Rails.logger.debug { "======" }
+    Rails.logger.debug { auth_options }
+    Rails.logger.debug { "======" }
+    user = warden.authenticate!(params[:session])
+    Rails.logger.debug { "======" }
+    Rails.logger.debug { user }
+    Rails.logger.debug { "======" }
+    sign_in(resource_name, user)
 
     current_user.update authentication_token: nil
 
