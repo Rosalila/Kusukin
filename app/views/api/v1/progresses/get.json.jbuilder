@@ -1,1 +1,1 @@
-json.progress @ucd
+json.progress @ucd.json_data
