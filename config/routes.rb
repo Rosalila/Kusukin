@@ -1,15 +1,36 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => { :omniauth_callbacks => "web/callbacks", :registrations => "web/registrations" }
+  devise_for :users, controllers: { omniauth_callbacks: 'web/callbacks', registrations: 'web/registrations' }
+
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      devise_for :users, controllers: { registrations: 'api/v1/registrations', sessions: 'api/v1/sessions'}
+
+      resource :progress do
+        member do
+          post :save
+          get :get
+        end
+      end
+
+      resource :courses do
+        member do
+          post :save
+          get :get
+        end
+      end
+
+      resource :achievements do
+        member do
+          post :unlock
+          get :index
+        end
+      end
+
+    end
+  end
 
   scope module: :web do
     root 'home#index'
-    post 'javascript_api/test' => 'javascript_api#test'
-
-    post 'javascript_api/save_progress' => 'javascript_api#save_progress'
-    post 'javascript_api/unlock_achievement' => 'javascript_api#unlock_achievement'
-    get 'javascript_api/get_progress' => 'javascript_api#get_progress'
-    get 'javascript_api/get_achievements' => 'javascript_api#get_achievements'
-    get 'javascript_api/get_course' => 'javascript_api#get_course'
 
     resources :home
     resources :homework_payments
