@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Api::V1::AchievementControllerTest < ActionController::TestCase
+class Api::V1::AchievementsControllerTest < ActionController::TestCase
   setup do
     @user = users :one
     @course = courses :one
@@ -15,8 +15,7 @@ class Api::V1::AchievementControllerTest < ActionController::TestCase
   end
 
   test "should get index" do
-    #post :save, format: :json, course: { name: "A", description: "B"}
-    #get :index, format: :json, user_id: 1
+    get :index, format: :json, user_id: @user.id
 
     assert_response 200
   end

@@ -22,7 +22,7 @@ Rails.application.routes.draw do
       resource :achievements do
         member do
           post :unlock
-          post :index
+          get :index
         end
       end
 

@@ -27,10 +27,10 @@ class Api::V1::AchievementsController < Api::V1::ApplicationController
   end
 
   def index
-    user = User.find_by_email(params[:email])
+    user = User.find_by_id(params[:id])
 
     if !user
-      render json: {"status": "Error: User with the provided email does not exists"}
+      render json: {"error": "User does not exists"}
       return
     end
 

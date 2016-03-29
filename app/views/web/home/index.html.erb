@@ -71,14 +71,6 @@
                         <p><%= course.description %></p>
 											</div>										
 											<div class="text-center">  
-                        <% if current_user.nil? %>
-                          <%= link_to "Enrollment", "/#login", class: "btn btn-blue",  
-                                      onClick:"$('#modal-#{count}').hide();" %>  
-                        <% else %>
-                        <%= link_to "Enrollment", { controller: 'enrollment', action: 'new', id: course }, 
-                                    class: "btn btn-blue" %> 
-                        
-                        <% end %>
                       </div>
 								</div>
 							</div>
