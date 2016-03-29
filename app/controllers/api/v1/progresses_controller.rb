@@ -7,11 +7,11 @@ class Api::V1::ProgressesController < Api::V1::ApplicationController
     progress = params[:progress]
 
     if User.exists?(id: user_id)==false
-      render json: {"status": "Error: User does not exists"}
+      render json: {"error": "User does not exists"}
       return
     end
     if Course.exists?(id: course_id)==false
-      render json: {"status": "Error: Course does not exists"}
+      render json: {"error": "Course does not exists"}
       return
     end
 
