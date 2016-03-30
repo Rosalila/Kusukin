@@ -38,8 +38,8 @@ class Api::V1::AchievementsController < Api::V1::ApplicationController
     user.achievements.each do |achievement|
       achievements.push({id: achievement.id,
                         name: achievement.name,
-                        description: achievement.description
-                        #icon: Refile.attachment_url(achievement, :icon, format: "png")
+                        description: achievement.description,
+                        icon: Refile.attachment_url(achievement, :icon, format: "png")
                         })
     end
 
