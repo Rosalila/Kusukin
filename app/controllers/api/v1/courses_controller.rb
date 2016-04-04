@@ -10,8 +10,6 @@ class Api::V1::CoursesController < Api::V1::ApplicationController
 
   def get
     @course = Course.find_by(id: params[:course_id])
-    render json: nil, status: :ok
-
     render json: nil, status: :unprocessable_entity unless @course
   end
 
