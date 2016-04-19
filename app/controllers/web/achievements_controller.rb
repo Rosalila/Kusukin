@@ -61,6 +61,19 @@ class Web::AchievementsController < ApplicationController
     end
   end
 
+  def completions
+    achievement_id = params[:id]
+
+    unless Achievement.exists?(id: achievement_id)
+      render json: { error: 'Achievement does not exists' }
+      return
+    end
+
+    completions = UserAchievement.all.where(:achievement_id=>1).count
+
+    render json: {completions: completions}
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_achievement

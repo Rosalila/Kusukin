@@ -23,7 +23,6 @@ Rails.application.routes.draw do
         member do
           post :unlock
           get :index
-          get :completions
         end
       end
 
@@ -31,6 +30,8 @@ Rails.application.routes.draw do
   end
 
   scope module: :web do
+    get '/achievements/completions', to: 'achievements#completions', as: 'achievements_completions'
+
     root 'home#index'
 
     resources :home
