@@ -46,6 +46,19 @@ class Api::V1::AchievementsController < Api::V1::ApplicationController
     render json: { "achievements": achievements }
   end
 
+  def completions
+    achievement_id = params[:achievement_id]
+
+    unless Achievement.exists?(id: achievement_id)
+      render json: { error: 'Achievement does not exists' }
+      return
+    end
+
+    completions = UserAchievement.all.where(:achievement_id=>1).count
+
+    render json: {completions: completions}
+  end
+
   private
 
   def course_params

@@ -23,6 +23,7 @@ Rails.application.routes.draw do
         member do
           post :unlock
           get :index
+          get :completions
         end
       end
 
