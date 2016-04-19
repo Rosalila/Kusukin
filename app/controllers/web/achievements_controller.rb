@@ -69,7 +69,7 @@ class Web::AchievementsController < ApplicationController
       return
     end
 
-    completions = UserAchievement.all.where(:achievement_id=>1).count
+    completions = UserAchievement.all.where(:achievement_id=>achievement_id).count
 
     render json: {completions: completions}
   end
