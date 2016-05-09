@@ -6,9 +6,13 @@ class Web::CallbacksController < Devise::OmniauthCallbacksController
     course_id = params["course_id"]
     @user.authentication_token=nil
     @user.save
-    @ucd = UserCourseStorage.find_by(course_id: course_id,user_id: @user.id)
     if login_origin
-      redirect_to login_origin+"?user_email="+@user.email+"&user_token="+@user.authentication_token+"&current_level="+"0"+"&progress="+@ucd.json_data
+      @ucd = UserCourseStorage.find_by(course_id: course_id,user_id: @user.id)
+      if @ucd 
+        redirect_to login_origin+"?user_email="+@user.email+"&user_token="+@user.authentication_token+"&current_level="+"0"+"&progress="+@ucd.json_data
+      else
+        redirect_to login_origin+"?user_email="+@user.email+"&user_token="+@user.authentication_token+"&current_level="+"0"
+      end
     else
       sign_in_and_redirect @user
     end
