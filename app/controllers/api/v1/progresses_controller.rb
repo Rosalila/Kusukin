@@ -28,7 +28,12 @@ class Api::V1::ProgressesController < Api::V1::ApplicationController
   end
 
   def get
-    @ucd = UserCourseStorage.find_by(course_id: params[:course_id])
+    @user=User.find_by_email(params[:user_email])
+    if !@user
+      render json: {"error": "User does not exists"}
+      return
+    end
+    @ucd = UserCourseStorage.find_by(course_id: params[:course_id],user_id: @user.id)
 
     render json: nil, status: :unprocessable_entity unless @ucd
   end
