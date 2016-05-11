@@ -5,12 +5,14 @@ class Api::V1::ProgressesController < Api::V1::ApplicationController
     user_id = params[:user_id]
     course_id = params[:course_id]
     progress = params[:progress]
+    user = User.find_by(authentication_token: [params[:auth_token]], id: user_id)
+    course = Course.find_by(id: course_id)
 
-    unless User.exists?(id: user_id)
+    unless user
       render json: { "error": 'User does not exists' }, status: :unprocessable_entity
       return
     end
-    unless Course.exists?(id: course_id)
+    unless course
       render json: { "error": 'Course does not exists' }, status: :unprocessable_entity
       return
     end
