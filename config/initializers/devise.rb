@@ -263,4 +263,5 @@ Devise.setup do |config|
   #Add your ID and secret here
   #ID first, secret second
   config.omniauth :facebook, "404645213077463", "8eb7849975a89a6580572b0da457d9b2", :image_size => {:width => 160, :height => 160}
+  config.omniauth :google_oauth2, "625758491276-0meaf93ou9h0c0idjvk2hd7c6p4u9fr5.apps.googleusercontent.com", "X", { access_type: "offline", approval_prompt: "" }
 end
