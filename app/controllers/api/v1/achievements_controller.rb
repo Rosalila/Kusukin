@@ -2,15 +2,17 @@ class Api::V1::AchievementsController < Api::V1::ApplicationController
   protect_from_forgery with: :null_session
 
   def unlock
-    user_id = current_user.id
+    user_id = params[:user_id]
     achievement_id = params[:achievement_id]
+    user = User.find_by(authentication_token: [params[:auth_token]], id: user_id)
+    achievement = Achievement.find_by(id: achievement_id)
 
-    unless User.exists?(id: user_id)
-      render json: { error: 'User does not exists' }
+    unless user
+      render json: { error: 'User does not exists' }, status: :unprocessable_entity
       return
     end
-    unless Achievement.exists?(id: achievement_id)
-      render json: { error: 'Achievement does not exists' }
+    unless achievement
+      render json: { error: 'Achievement does not exists' }, status: :unprocessable_entity
       return
     end
 
@@ -23,24 +25,23 @@ class Api::V1::AchievementsController < Api::V1::ApplicationController
     user_achievement.is_unlocked = true
     user_achievement.save
 
-    render json: { status: 'success', achievement: Achievement.find_by_id(achievement_id) }
+    render json: { status: :ok, achievement: Achievement.find_by_id(achievement_id) }
   end
 
   def index
-    user = User.find_by_id(params[:id])
+    user = User.find_by_id(params[:user_id])
 
     unless user
-      render json: { error: 'User does not exists' }
+      render json: { error: 'User does not exists' }, status: :unprocessable_entity
       return
     end
 
     achievements = []
     user.achievements.each do |achievement|
-      achievements.push({id: achievement.id,
+      achievements.push(id: achievement.id,
                         name: achievement.name,
                         description: achievement.description,
-                        icon: Refile.attachment_url(achievement, :icon, format: "png")
-                        })
+                        icon: Refile.attachment_url(achievement, :icon, format: 'png'))
     end
 
     render json: { "achievements": achievements }
