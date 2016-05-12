@@ -144,7 +144,7 @@
                 <div class="box-footer">
                    <%= f.submit "Login", class: "btn btn-success" %>
                    <%= link_to "Login with Facebook", user_omniauth_authorize_path(:facebook), class: "btn btn-primary" %>
-                   <%= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2) %>
+                   <%= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2), class: "btn btn-primary" %>
                    <!--<button type="submit" class="btn btn-success">Login</button>
                    <a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a>-->
                 </div>
