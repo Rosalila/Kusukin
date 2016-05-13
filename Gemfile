@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-gem 'rack-cors', :require => 'rack/cors'
+gem 'rack-cors', require: 'rack/cors'
 
-gem "refile", require: "refile/rails"
-gem "refile-mini_magick"
+gem 'refile', require: 'refile/rails'
+gem 'refile-mini_magick'
 
 gem 'dogecoin_client'
 
@@ -39,4 +39,3 @@ group :development, :test do
   gem 'spring'
   gem 'capistrano', '~> 3.4'
 end
-
