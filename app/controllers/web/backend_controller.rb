@@ -1,12 +1,10 @@
 class Web::BackendController < ApplicationController
-
   layout 'backend/dashboard'
 
   def courses
     @courses = Course.where(user_id: current_user.id).order('created_at ASC')
-    if params[:course_id]
-      @course = Course.find_by_id(params[:course_id])
-    end
+    return if params[:course_id]
+    @course = Course.find_by_id(params[:course_id])
   end
 
   def balance
@@ -17,5 +15,4 @@ class Web::BackendController < ApplicationController
 
   def checked_assignments
   end
-
 end

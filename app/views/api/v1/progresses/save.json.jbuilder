@@ -1,2 +1,2 @@
 json.progress @ucd.json_data
-json.status "success"
+json.status 'success'

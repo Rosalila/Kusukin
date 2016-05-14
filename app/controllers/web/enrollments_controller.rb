@@ -1,6 +1,4 @@
 class Web::EnrollmentsController < ApplicationController
-  #before_action :set_enrollment, only: [:index, :show, :destroy]
-
   layout 'backend/dashboard'
 
   def show
@@ -16,10 +14,8 @@ class Web::EnrollmentsController < ApplicationController
         enrollment.course_id = course.id
         enrollment.progress = 0
 
-        #verify if a user have enrollments before save it
-        unless enrollment.user_has_enrollments
-          enrollment.save ? redirect_to(in_progress_courses_path) : redirect_to(:back)
-        end
+        # verify if a user have enrollments before save it
+        redirect_user_from(enrollment)
 
         redirect_to in_progress_courses_path
       end
@@ -37,5 +33,12 @@ class Web::EnrollmentsController < ApplicationController
       format.html { redirect_to :back, notice: 'Enrollment was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def redirect_user_from(enrollment)
+    return if enrollment.user_has_enrollments?
+    enrollment.save ? redirect_to(in_progress_courses_path) : redirect_to(:back)
   end
 end

@@ -1,6 +1,5 @@
 module HomeHelper
-  
-  #Helper for create user with devise
+  # Helper for create user with devise
   def resource_name
     :user
   end
