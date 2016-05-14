@@ -2,9 +2,9 @@ class Api::V1::AchievementsController < Api::V1::ApplicationController
   protect_from_forgery with: :null_session
 
   def unlock
-    user_id = params[:user_id]
+
     achievement_id = params[:achievement_id]
-    user = User.find_by(authentication_token: [params[:auth_token]], id: user_id)
+    user = User.find_by(authentication_token: [params[:auth_token]], email: [params[:user_email]])
     achievement = Achievement.find_by(id: achievement_id)
 
     unless user
@@ -16,10 +16,10 @@ class Api::V1::AchievementsController < Api::V1::ApplicationController
       return
     end
 
-    user_achievement = UserAchievement.find_by(user_id: user_id, achievement_id: achievement_id)
+    user_achievement = UserAchievement.find_by(user_id: user.id, achievement_id: achievement_id)
     unless user_achievement
       user_achievement = UserAchievement.new
-      user_achievement.user_id = user_id
+      user_achievement.user_id = user.id
       user_achievement.achievement_id = achievement_id
     end
     user_achievement.is_unlocked = true
@@ -29,7 +29,7 @@ class Api::V1::AchievementsController < Api::V1::ApplicationController
   end
 
   def index
-    user = User.find_by_id(params[:user_id])
+    user = User.find_by(authentication_token: [params[:auth_token]], email: [params[:user_email]])
 
     unless user
       render json: { error: 'User does not exists' }, status: :unprocessable_entity

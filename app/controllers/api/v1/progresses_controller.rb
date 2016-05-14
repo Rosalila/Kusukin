@@ -2,10 +2,10 @@ class Api::V1::ProgressesController < Api::V1::ApplicationController
   protect_from_forgery with: :null_session
 
   def save
-    user_id = params[:user_id]
     course_id = params[:course_id]
     progress = params[:progress]
-    user = User.find_by(authentication_token: [params[:auth_token]], id: user_id)
+
+    user = User.find_by(authentication_token: [params[:auth_token]], email: [params[:user_email]])
     course = Course.find_by(id: course_id)
 
     unless user
@@ -34,8 +34,8 @@ class Api::V1::ProgressesController < Api::V1::ApplicationController
   end
 
   def get
-    user_id = params[:user_id]
-    unless User.exists?(id: user_id)
+    user = User.find_by(authentication_token: [params[:auth_token]], email: [params[:user_email]])
+    unless user
       render json: { "error": 'User does not exists' }, status: :unprocessable_entity
       return
     end
