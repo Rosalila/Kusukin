@@ -11,7 +11,7 @@ class Api::V1::ProgressesControllerTest < ActionController::TestCase
   end
 
   test 'should post save' do
-    post :save, format: :json, user_id: @user.id, course_id: @course.id, progress: { 'player1_wins' => 0, 'player2_wins' => 0 }
+    post :save, format: :json, user_email: @user.email, course_id: @course.id, progress: { 'player1_wins' => 0, 'player2_wins' => 0 }
 
     assert_response 200
   end
@@ -29,8 +29,8 @@ class Api::V1::ProgressesControllerTest < ActionController::TestCase
   end
 
   test 'should get progress' do
-    post :save, format: :json, user_id: @user.id, course_id: @course.id, progress: { 'player1_wins' => 0, 'player2_wins' => 0 }
-    get :get, format: :json, course_id: @course.id, user_id: @user.id
+    post :save, format: :json, user_email: @user.email, course_id: @course.id, progress: { 'player1_wins' => 0, 'player2_wins' => 0 }
+    get :get, format: :json, course_id: @course.id, user_email: @user.email
 
     assert_response 200
   end

@@ -21,7 +21,7 @@ class Api::V1::ProgressesController < Api::V1::ApplicationController
     unless @ucd
       @ucd = UserCourseStorage.new
       @ucd.user_id = user.id
-      @ucd.course_id = course_id
+      @ucd.course_id = course.id
     end
     @ucd.json_data = progress.to_json
     @ucd.save
