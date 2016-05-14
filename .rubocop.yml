@@ -8,6 +8,7 @@ AllCops:
     - 'config/**/*'
     - 'test/factories/**/*'
     - 'tmp/**/*'
+    - 'bin/**/'
 
 Style/FrozenStringLiteralComment:
   Enabled: false

@@ -5,18 +5,18 @@ class Web::HomeworksControllerTest < ActionController::TestCase
     @homework = homeworks(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get :index
     assert_response :success
     assert_not_nil assigns(:homeworks)
   end
 
-  test "should get new" do
+  test 'should get new' do
     get :new
     assert_response :success
   end
 
-  test "should create homework" do
+  test 'should create homework' do
     assert_difference('Homework.count') do
       post :create, homework: { link: @homework.link, price: @homework.price, section_id: @homework.section_id }
     end
@@ -24,22 +24,22 @@ class Web::HomeworksControllerTest < ActionController::TestCase
     assert_redirected_to homework_path(assigns(:homework))
   end
 
-  test "should show homework" do
+  test 'should show homework' do
     get :show, id: @homework
     assert_response :success
   end
 
-  test "should get edit" do
+  test 'should get edit' do
     get :edit, id: @homework
     assert_response :success
   end
 
-  test "should update homework" do
+  test 'should update homework' do
     patch :update, id: @homework, homework: { link: @homework.link, price: @homework.price, section_id: @homework.section_id }
     assert_redirected_to homework_path(assigns(:homework))
   end
 
-  test "should destroy homework" do
+  test 'should destroy homework' do
     assert_difference('Homework.count', -1) do
       delete :destroy, id: @homework
     end
