@@ -5,7 +5,7 @@ class Api::V1::ProgressesController < Api::V1::ApplicationController
     course_id = params[:course_id]
     progress = params[:progress]
 
-    user = User.find_by(authentication_token: [params[:auth_token]], email: [params[:user_email]])
+    user = User.find_by(authentication_token: [params[:user_token]], email: [params[:user_email]])
     course = Course.find_by(id: course_id)
 
     unless user
@@ -34,7 +34,7 @@ class Api::V1::ProgressesController < Api::V1::ApplicationController
   end
 
   def get
-    user = User.find_by(authentication_token: [params[:auth_token]], email: [params[:user_email]])
+    user = User.find_by(authentication_token: [params[:user_token]], email: [params[:user_email]])
     unless user
       render json: { "error": 'User does not exists' }, status: :unprocessable_entity
       return

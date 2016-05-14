@@ -4,7 +4,7 @@ class Api::V1::AchievementsController < Api::V1::ApplicationController
   def unlock
 
     achievement_id = params[:achievement_id]
-    user = User.find_by(authentication_token: [params[:auth_token]], email: [params[:user_email]])
+    user = User.find_by(authentication_token: [params[:user_token]], email: [params[:user_email]])
     achievement = Achievement.find_by(id: achievement_id)
 
     unless user
@@ -29,7 +29,7 @@ class Api::V1::AchievementsController < Api::V1::ApplicationController
   end
 
   def index
-    user = User.find_by(authentication_token: [params[:auth_token]], email: [params[:user_email]])
+    user = User.find_by(authentication_token: [params[:user_token]], email: [params[:user_email]])
 
     unless user
       render json: { error: 'User does not exists' }, status: :unprocessable_entity
