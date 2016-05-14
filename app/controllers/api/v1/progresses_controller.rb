@@ -17,10 +17,10 @@ class Api::V1::ProgressesController < Api::V1::ApplicationController
       return
     end
 
-    @ucd = UserCourseStorage.find_by(user_id: user_id, course_id: course_id)
+    @ucd = UserCourseStorage.find_by(user_id: user.id, course_id: course_id)
     unless @ucd
       @ucd = UserCourseStorage.new
-      @ucd.user_id = user_id
+      @ucd.user_id = user.id
       @ucd.course_id = course_id
     end
     @ucd.json_data = progress.to_json
@@ -39,7 +39,7 @@ class Api::V1::ProgressesController < Api::V1::ApplicationController
       render json: { "error": 'User does not exists' }, status: :unprocessable_entity
       return
     end
-    @ucd = UserCourseStorage.find_by(course_id: params[:course_id], user_id: user_id)
+    @ucd = UserCourseStorage.find_by(course_id: params[:course_id], user_id: user.id)
 
     if @ucd
       render json: @ucd, status: :unprocessable_entity unless @ucd
