@@ -62,13 +62,12 @@ class Web::HomeworkPaymentsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_homework_payment
-      @homework_payment = HomeworkPayment.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def homework_payment_params
-      params.require(:homework_payment).permit(:user_id, :homework_id)
-    end
+  def set_homework_payment
+    @homework_payment = HomeworkPayment.find(params[:id])
+  end
+
+  def homework_payment_params
+    params.require(:homework_payment).permit(:user_id, :homework_id)
+  end
 end

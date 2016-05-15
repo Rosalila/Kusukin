@@ -1,15 +1,15 @@
 module ApplicationHelper
-  def myBalance
+  def my_balance
     client = DogecoinClient.new
-    return client.get_balance("themoreyoube_user_"+current_user.id.to_s , 0) if client.valid?
+    return client.get_balance('themoreyoube_user_' + current_user.id.to_s, 0) if client.valid?
 
-    return -1
+    -1
   end
 
-  def myAddress
+  def my_address
     client = DogecoinClient.new
-    return client.get_account_address "themoreyoube_user_"+current_user.id.to_s if client.valid?
+    return client.get_account_address 'themoreyoube_user_' + current_user.id.to_s if client.valid?
 
-    return "error"
+    'error'
   end
 end

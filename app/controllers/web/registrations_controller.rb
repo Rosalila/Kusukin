@@ -1,8 +1,5 @@
 class Web::RegistrationsController < Devise::RegistrationsController
- # before_filter :configure_sign_up_params, only: [:create]
- # before_filter :configure_account_update_params, only: [:update]
-
-  before_filter :configure_permitted_parameters, :only => [:create]
+  before_action :configure_permitted_parameters, only: [:create]
 
   protected
 

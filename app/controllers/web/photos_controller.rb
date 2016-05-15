@@ -10,7 +10,7 @@ class Web::PhotosController < ApplicationController
   def create
     @photo = Photo.new(photo_params)
     if @photo.save
-      flash[:success] = "Photo saved!"
+      flash[:success] = 'Photo saved!'
       redirect_to photos_path
     else
       render 'new'

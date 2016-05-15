@@ -9,28 +9,27 @@ class Web::CoursesController < ApplicationController
   end
 
   def in_progress
-    #@courses = current_user.courses
     @enrollments = current_user.enrollments
   end
 
   # GET /courses/1
   # GET /courses/1.json
   def show
-    @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions = {})
+    @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
   end
 
   def join_enrollment
-      enrollment = Enrollment.new
-      enrollment.user_id = current_user.id
-      enrollment.course_id = @course.id
-      enrollment.progress = 0
+    enrollment = Enrollment.new
+    enrollment.user_id = current_user.id
+    enrollment.course_id = @course.id
+    enrollment.progress = 0
 
-      #verify if a user have enrollments before save it
-      if enrollment.user_has_enrollments
-        redirect_to in_progress_courses_path
-      else
-        enrollment.save ? redirect_to(in_progress_courses_path) : redirect_to(:back)
-      end
+    # verify if a user have enrollments before save it
+    if enrollment.user_has_enrollments?
+      redirect_to in_progress_courses_path
+    else
+      enrollment.save ? redirect_to(in_progress_courses_path) : redirect_to(:back)
+    end
   end
 
   # GET /courses/new
@@ -48,16 +47,12 @@ class Web::CoursesController < ApplicationController
     @course = Course.new(course_params)
     @course.user_id = current_user.id
 
-    #respond_to do |format|
-      if @course.save
-        #format.html { redirect_to @course, notice: 'Course was successfully createdd.' }
-        #format.json { render "/backend/courses", status: :created, location: @course }
-        redirect_to controller: 'backend', action: 'courses'
-      else
-        format.html { render :new }
-        format.json { render json: @course.errors, status: :unprocessable_entity }
-      end
-    #end
+    if @course.save
+      redirect_to controller: 'backend', action: 'courses'
+    else
+      format.html { render :new }
+      format.json { render json: @course.errors, status: :unprocessable_entity }
+    end
   end
 
   # PATCH/PUT /courses/1
@@ -78,20 +73,16 @@ class Web::CoursesController < ApplicationController
   # DELETE /courses/1.json
   def destroy
     @course.destroy
-    #respond_to do |format|
-    #  format.html { redirect_to courses_url, notice: 'Course was successfully destroyed.' }
     redirect_to controller: 'backend', action: 'courses'
-    #end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_course
-      @course = Course.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def course_params
-      params.require(:course).permit(:name, :description)
-    end
+  def set_course
+    @course = Course.find(params[:id])
+  end
+
+  def course_params
+    params.require(:course).permit(:name, :description)
+  end
 end

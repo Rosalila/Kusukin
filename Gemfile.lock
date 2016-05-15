@@ -63,6 +63,7 @@ GEM
       execjs
     coffee-script-source (1.9.1.1)
     columnize (0.9.0)
+    configus (0.0.5)
     debug_inspector (0.0.2)
     devise (3.5.1)
       bcrypt (~> 3.0)
@@ -255,6 +256,7 @@ DEPENDENCIES
   cancan
   capistrano (~> 3.4)
   coffee-rails (~> 4.1.0)
+  configus
   devise
   dogecoin_client
   dragonfly
@@ -281,4 +283,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.11.2
+   1.12.3

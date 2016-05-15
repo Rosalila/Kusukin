@@ -1,5 +1,5 @@
 class Api::V1::SessionsController < Devise::SessionsController
-  skip_before_filter :verify_signed_out_user, :only => [:destroy]
+  skip_before_action :verify_signed_out_user, only: [:destroy]
 
   def create
     user = warden.authenticate!(params[:user])
@@ -9,20 +9,20 @@ class Api::V1::SessionsController < Devise::SessionsController
     current_user.save
 
     respond_to do |format|
-      format.json {
+      format.json do
         render json: {
           user: current_user,
           status: :ok,
           authentication_token: current_user.authentication_token
         }
-      }
+      end
     end
   end
 
   def destroy
     respond_to do |format|
       user = User.find_by authentication_token: params[:authentication_token]
-      format.json {
+      format.json do
         if user
           user.authentication_token = nil
           user.save
@@ -31,7 +31,7 @@ class Api::V1::SessionsController < Devise::SessionsController
         else
           render json: nil, status: :unprocessable_entity
         end
-      }
+      end
     end
   end
 end

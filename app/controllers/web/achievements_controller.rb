@@ -28,7 +28,7 @@ class Web::AchievementsController < ApplicationController
 
     respond_to do |format|
       if @achievement.save
-        format.html { redirect_to controller: 'backend', action: 'courses' , course_id: @achievement.course_id, notice: 'Achievement was successfully created.' }
+        format.html { redirect_to controller: 'backend', action: 'courses', course_id: @achievement.course_id, notice: 'Achievement was successfully created.' }
         format.json { render :show, status: :created, location: @achievement }
       else
         format.html { render :new }
@@ -56,7 +56,7 @@ class Web::AchievementsController < ApplicationController
   def destroy
     @achievement.destroy
     respond_to do |format|
-      format.html { redirect_to controller: 'backend', action: 'courses' , course_id: @achievement.course_id, notice: 'Achievement was successfully destroyed.' }
+      format.html { redirect_to controller: 'backend', action: 'courses', course_id: @achievement.course_id, notice: 'Achievement was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,19 +69,18 @@ class Web::AchievementsController < ApplicationController
       return
     end
 
-    completions = UserAchievement.all.where(:achievement_id=>achievement_id).count
+    completions = UserAchievement.all.where(achievement_id: achievement_id).count
 
-    render json: {completions: completions}
+    render json: { completions: completions }
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_achievement
-      @achievement = Achievement.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def achievement_params
-      params.require(:achievement).permit(:name, :description, :icon, :course_id)
-    end
+  def set_achievement
+    @achievement = Achievement.find(params[:id])
+  end
+
+  def achievement_params
+    params.require(:achievement).permit(:name, :description, :icon, :course_id)
+  end
 end
