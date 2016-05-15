@@ -2,7 +2,6 @@ class Api::V1::AchievementsController < Api::V1::ApplicationController
   protect_from_forgery with: :null_session
 
   def unlock
-
     achievement_id = params[:achievement_id]
     user = User.find_by(authentication_token: [params[:user_token]], email: [params[:user_email]])
     achievement = Achievement.find_by(id: achievement_id)
