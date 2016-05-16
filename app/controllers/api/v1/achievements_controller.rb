@@ -30,7 +30,8 @@ class Api::V1::AchievementsController < Api::V1::ApplicationController
                    {
                      id: achievement.id,
                      name: achievement.name,
-                     description: achievement.description
+                     description: achievement.description,
+                     icon: Refile.attachment_url(achievement, :icon, format: 'png')
                    }
                  }
   end
