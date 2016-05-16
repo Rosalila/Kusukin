@@ -26,6 +26,8 @@ database:
 test:
   minitest_globs:
     - test/**/*_test.rb
+  post:
+    - bundle exec rubocop
 notify:
   webhooks:
     - url: https://hooks.slack.com/services/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
