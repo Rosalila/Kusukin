@@ -33,6 +33,7 @@ class Api::V1::AchievementsController < Api::V1::ApplicationController
                      description: achievement.description,
                      icon: Refile.attachment_url(achievement, :icon, format: 'png'))
                    }
+                 }
   end
 
   def index
