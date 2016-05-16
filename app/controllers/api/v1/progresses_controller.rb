@@ -44,7 +44,7 @@ class Api::V1::ProgressesController < Api::V1::ApplicationController
     if @ucd
       render json: @ucd, status: :unprocessable_entity unless @ucd
     else
-      render json: nil, status: :unprocessable_entity unless @ucd
+      render json: { "progress": '' }, status: :unprocessable_entity unless @ucd
     end
   end
 end
