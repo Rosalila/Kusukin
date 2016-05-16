@@ -24,7 +24,15 @@ class Api::V1::AchievementsController < Api::V1::ApplicationController
     user_achievement.is_unlocked = true
     user_achievement.save
 
-    render json: { status: :ok, achievement: Achievement.find_by_id(achievement_id) }
+    achievement = Achievement.find_by_id(achievement_id)
+
+    render json: { status: :ok, achievement:
+                   {
+                     id: achievement.id,
+                     name: achievement.name,
+                     description: achievement.description
+                   }
+                 }
   end
 
   def index
