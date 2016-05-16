@@ -42,9 +42,9 @@ class Api::V1::ProgressesController < Api::V1::ApplicationController
     @ucd = UserCourseStorage.find_by(course_id: params[:course_id], user_id: user.id)
 
     if @ucd
-      render json: @ucd, status: :unprocessable_entity unless @ucd
+      render json: @ucd, status: :ok
     else
-      render json: { "progress": '' }, status: :unprocessable_entity unless @ucd
+      render json: { "progress": '' }, status: :ok
     end
   end
 end
