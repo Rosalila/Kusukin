@@ -10,9 +10,9 @@ class Web::CallbacksController < Devise::OmniauthCallbacksController
       @ucd = UserCourseStorage.find_by(course_id: course_id, user_id: @user.id)
       # TO-DO. Remove long strings and make redirect using params
       if @ucd
-        redirect_to login_origin + '?user_email=' + @user.email + '&user_token=' + @user.authentication_token + '&current_level=' + '0' + '&progress=' + @ucd.json_data
+        redirect_to login_origin + '?user_email=' + @user.email + '&user_token=' + @user.authentication_token + '&progress=' + @ucd.json_data
       else
-        redirect_to login_origin + '?user_email=' + @user.email + '&user_token=' + @user.authentication_token + '&current_level=' + '0'
+        redirect_to login_origin + '?user_email=' + @user.email + '&user_token=' + @user.authentication_token + '&progress={}'
       end
     else
       sign_in_and_redirect @user
@@ -29,9 +29,9 @@ class Web::CallbacksController < Devise::OmniauthCallbacksController
     if login_origin
       @ucd = UserCourseStorage.find_by(course_id: course_id, user_id: @user.id)
       if @ucd
-        redirect_to login_origin + '?user_email=' + @user.email + '&user_token=' + @user.authentication_token + '&current_level=' + '0' + '&progress=' + @ucd.json_data
+        redirect_to login_origin + '?user_email=' + @user.email + '&user_token=' + @user.authentication_token + '&progress=' + @ucd.json_data
       else
-        redirect_to login_origin + '?user_email=' + @user.email + '&user_token=' + @user.authentication_token + '&current_level=' + '0'
+        redirect_to login_origin + '?user_email=' + @user.email + '&user_token=' + @user.authentication_token + '&progress={}'
       end
     else
       sign_in_and_redirect @user
