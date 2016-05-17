@@ -1,23 +1,16 @@
 class Web::EnrollmentsController < ApplicationController
   layout 'backend/dashboard'
 
-  def show
-  end
-
-  def new
-    if current_user
-      course = Course.find(params[:id])
-
-      unless course.nil?
+  def create
+    # Also checking of current_user should be earlier
+    if current_user && params[:course_id].present?
+      course = Course.find_by(id: params[:course_id])
+      if course
         enrollment = Enrollment.new
         enrollment.user_id = current_user.id
         enrollment.course_id = course.id
         enrollment.progress = 0
-
-        # verify if a user have enrollments before save it
         redirect_user_from(enrollment)
-
-        redirect_to in_progress_courses_path
       end
     else
       redirect_to new_user_session_path, notice: 'You are not logged in.'
@@ -30,7 +23,7 @@ class Web::EnrollmentsController < ApplicationController
     @enrollment = Enrollment.find(params[:id])
     @enrollment.destroy
     respond_to do |format|
-      format.html { redirect_to :back, notice: 'Enrollment was successfully destroyed.' }
+      format.html { redirect_to in_progress_courses_path, notice: 'Enrollment was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -38,7 +31,11 @@ class Web::EnrollmentsController < ApplicationController
   private
 
   def redirect_user_from(enrollment)
-    return if enrollment.user_has_enrollments?
-    enrollment.save ? redirect_to(in_progress_courses_path) : redirect_to(:back)
+    if enrollment.user_has_enrollments?
+      redirect_to in_progress_courses_path, notice: 'You have already enrolled this course'
+      return
+    end
+    enrollment.save
+    redirect_to(in_progress_courses_path)
   end
 end

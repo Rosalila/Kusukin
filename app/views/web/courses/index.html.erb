@@ -3,10 +3,10 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Courses in Progress
+      Courses
     </h1>
   </section>
-  
+
    <!-- Main content -->
   <section class="content">
     <div class="row">
@@ -29,10 +29,15 @@
           <tr>
             <td><%= course.name %></td>
             <td>
-              <%= Enrollment.where(:course_id => course).size %>
+              <%= Enrollment.where(:course_id => course).count %>
             </td>
             <td>
-              <%= link_to "Join", join_enrollment_courses_path(:id => course), class: "btn btn-primary" %>
+              <% if current_user.courses.include?(course) %>
+                <% # REFACTOR THIS LATER! No sql at views %>
+                <%= link_to "Continue", { action: "show", id: current_user.enrollments.find_by(course_id: course.id).course_id }, { class: "btn btn-primary" } %>
+              <% else %>
+                <%= link_to "Join", enrollments_path(:course_id => course), class: "btn btn-primary", method: :post %>
+              <% end %>
             </td>
           </tr>
           <% end %>
