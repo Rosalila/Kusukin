@@ -199,7 +199,8 @@
              <%= f.submit "Sign up", class: "btn btn-info" %>
              <span style="margin-left:8px;margin-right:8px">or</span>
              <%#= f.submit "Sign Up with Facebook", user_omniauth_authorize_path(:facebook), class: "btn btn-primary" %>
-             <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook), class: "btn btn-primary" %>
+             <%= link_to "Login with Facebook", user_omniauth_authorize_path(:facebook), class: "btn btn-primary" %>
+             <%= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2), class: "btn btn-primary" %>
            </div>
 
            <div class="form-group">
