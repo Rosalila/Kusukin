@@ -18,20 +18,6 @@ class Web::CoursesController < ApplicationController
     @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
   end
 
-  def join_enrollment
-    enrollment = Enrollment.new
-    enrollment.user_id = current_user.id
-    enrollment.course_id = @course.id
-    enrollment.progress = 0
-
-    # verify if a user have enrollments before save it
-    if enrollment.user_has_enrollments?
-      redirect_to in_progress_courses_path
-    else
-      enrollment.save ? redirect_to(in_progress_courses_path) : redirect_to(:back)
-    end
-  end
-
   # GET /courses/new
   def new
     @course = Course.new
