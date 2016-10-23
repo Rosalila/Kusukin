@@ -1,4 +1,4 @@
-# TheMoarYouBe
+# Kusukin
 This project was born in Hackathon SmartCities http://www.global.datafest.net/
 
 TheMoarYouBe is a massive open online course (MOOC) intended as a non profit platform. Our goal is provides the best digital experience between the students and teachers because our focus is online collaboration and teamwork.
